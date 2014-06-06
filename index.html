@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Horizon Calculator</title>
+    <link rel="icon"
+          type="image/png"
+          href="/images/favicon.png">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="scripts/numbers.js"></script>
+<script src="scripts/helpers.js"></script>
+<script src="scripts/revenue_integrity.js"></script>
+<script src="scripts/airfare_reprice_refund.js"></script>
+<script>
+    $(function () {
+        var c = console;
+
+        c.log("Revenue Integrity");
+        REVENUE_INTEGRITY.setUserInput(HELPERS.numberCheck(600000000));
+        c.log("[UI]: $" + NUMBER.toString(REVENUE_INTEGRITY.getUserInput()));
+//        console.log(NUMBER.toString(REVENUE_INTEGRITY.getUserInput()));
+//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityBatchHigh()));
+//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityBatchLow()));
+//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityRealtimeHigh()));
+//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityRealtimeLow()));
+        c.log("[RH]: $" + NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityCombinedHigh()));
+        c.log("[RL]: $" + NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityCombinedLow()));
+
+
+        c.log('**************************');
+
+
+        c.log("ARR - Airfare Reprice Refund");
+        c.log("Agent efficiency savings");
+
+        ARR.setUserInput(HELPERS.numberCheck(6000000));
+        c.log("[UI]: $" + NUMBER.toString(ARR.getUserInput()));
+
+        ARR.setShareOfTicketsReissued(HELPERS.numberCheck(5));
+        c.log("[UI]: share of tickets reissued... " + ARR.getShareOfTicketsReissued() + "%");
+
+        ARR.setEstimatedTimeToReissue(HELPERS.numberCheck(5));
+        c.log("[UI]: estimated time to reissue... " + ARR.getEstimatedTimeToReissue() + "%");
+
+        ARR.setHourlyCallCenterWages(HELPERS.numberCheck(1000000));
+        c.log("[UI]: hourly call center wages $" + NUMBER.toString(ARR.getHourlyCallCenterWages()));
+
+        ARR.setEstimatedShareOfTicketsOnWhichFeesWereNotCorrectlyCollected(HELPERS.numberCheck(10));
+        c.log("[UI]: estimated share of tickets... " + NUMBER.toString(ARR.getEstimatedShareOfTicketsOnWhichFeesWereNotCorrectlyCollected()) + "%");
+
+        ARR.setEstimatedIncrementalCollectionsPerARRTransaction(HELPERS.numberCheck(200000));
+        c.log("[UI]: estimated incremental collections... $" + NUMBER.toString(ARR.getEstimatedIncrementalCollectionsPerARRTransaction()));
+
+        c.log("[RH]: $" + NUMBER.toString(ARR.totalARRWageSavingsFeeCollectionGains("high")));
+        c.log("[RL]: $" + NUMBER.toString(ARR.totalARRWageSavingsFeeCollectionGains("low")));
+
+    });
+</script>
+</body>
+</html>
