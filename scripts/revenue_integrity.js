@@ -11,7 +11,7 @@ var REVENUE_INTEGRITY = (function () {
   'use strict';
 
   var user_input = 0,
-      high_revenue_improvement_batch_percentage = 1.6,		// 1.6%
+      high_revenue_improvement_batch_percentage = 1.2,		// 1.6%
       low_revenue_improvement_batch_percentage = 0.8,		// 0.8%
       high_revenue_improvement_real_time_percentage = 20,	// 20%
       low_revenue_improvement_real_time_percentage = 10;		// 10%

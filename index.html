@@ -6,32 +6,49 @@
           type="image/png"
           href="/images/favicon.png">
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
 
 </head>
 <body>
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>-->
+<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>-->
+<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>-->
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+
+<script src="scripts/config.js"></script>
 <script src="scripts/numbers.js"></script>
 <script src="scripts/helpers.js"></script>
 <script src="scripts/revenue_integrity.js"></script>
 <script src="scripts/airfare_reprice_refund.js"></script>
+<script src="scripts/airfight_insight.js"></script>
+<script src="scripts/emd_hsf_merchandising.js"></script>
+
 <script>
-    $(function () {
+    window.onload = (function () {
         var c = console;
+
+
+        var highValues = new CONFIG;
+        highValues.revenue_improvement = 1.6;
+        highValues.revenue_integrity = 20;
+        highValues.insight_pricing = 10;
+        highValues.ancillary_revenues_percentage = 7;
+
+        var lowValues = new CONFIG;
+        lowValues.revenue_improvement = 0.8;
+        lowValues.revenue_integrity = 10;
+        highValues.insight_pricing = 3;
+        highValues.ancillary_revenues_percentage = 4;
+
+        c.log(highValues);
+        c.log(lowValues);
+
 
         c.log("Revenue Integrity");
         REVENUE_INTEGRITY.setUserInput(HELPERS.numberCheck(600000000));
         c.log("[UI]: $" + NUMBER.toString(REVENUE_INTEGRITY.getUserInput()));
-//        console.log(NUMBER.toString(REVENUE_INTEGRITY.getUserInput()));
-//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityBatchHigh()));
-//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityBatchLow()));
-//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityRealtimeHigh()));
-//        console.log(NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityRealtimeLow()));
         c.log("[RH]: $" + NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityCombinedHigh()));
         c.log("[RL]: $" + NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityCombinedLow()));
 
@@ -62,6 +79,49 @@
 
         c.log("[RH]: $" + NUMBER.toString(ARR.totalARRWageSavingsFeeCollectionGains("high")));
         c.log("[RL]: $" + NUMBER.toString(ARR.totalARRWageSavingsFeeCollectionGains("low")));
+
+
+        c.log('**************************');
+
+
+        c.log("AFI - Airfare Insight");
+        c.log("Air revenue");
+
+        AFI.setUserInput(HELPERS.numberCheck(2000000));
+        c.log("[UI]: " + NUMBER.toString(AFI.getUserInput()));
+        c.log("[RH] Contribution: $" + NUMBER.toString(AFI.contribution(highValues.insight_pricing)));
+        c.log("[RL] Contribution: $" + NUMBER.toString(AFI.contribution(lowValues.insight_pricing)));
+
+
+        c.log('**************************');
+
+
+
+        c.log("HSF/EMD Merchandising Value");
+        EMD_HSF_MERCH.setUserInput(HELPERS.numberCheck(500000));
+        c.log("[UI]: " + NUMBER.toString(EMD_HSF_MERCH.getUserInput()));
+        c.log("[RH]: $" + NUMBER.toString(EMD_HSF_MERCH.potentialRevenueIncrease(highValues.ancillary_revenues_percentage)));
+        c.log("[RL]: $" + NUMBER.toString(EMD_HSF_MERCH.potentialRevenueIncrease(lowValues.ancillary_revenues_percentage)));
+
+
+        c.log('**************************');
+        c.log("Revenue/Savings swing");
+        c.log("[RH]:");
+        c.log(NUMBER.toString(
+              REVENUE_INTEGRITY.revenueIntegrityCombinedHigh() +
+              ARR.totalARRWageSavingsFeeCollectionGains("high") +
+              AFI.contribution(highValues.insight_pricing) +
+              EMD_HSF_MERCH.potentialRevenueIncrease(highValues.ancillary_revenues_percentage)
+            ));
+
+        c.log("[LH]:");
+        c.log(NUMBER.toString(
+          REVENUE_INTEGRITY.revenueIntegrityCombinedLow() +
+          ARR.totalARRWageSavingsFeeCollectionGains("low") +
+          AFI.contribution(lowValues.insight_pricing) +
+          EMD_HSF_MERCH.potentialRevenueIncrease(lowValues.ancillary_revenues_percentage)
+        ));
+
 
     });
 </script>
