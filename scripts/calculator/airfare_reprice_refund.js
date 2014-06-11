@@ -12,10 +12,10 @@ var ARR = (function () {
 
   // Agent Efficiency Savings
   var user_input = 0, // | USR INPUT
-      share_of_tickets_reissued_high = 5, // 5% | USR INPUT
-      share_of_tickets_reissued_low = share_of_tickets_reissued_high / 2, 
+      share_of_tickets_reissued = 5, // 5% | USR INPUT
+      share_of_tickets_reissued_low = share_of_tickets_reissued / 2, 
       estimated_time_to_reissue = 5, // 5% 40/60 revisit this as easy to put in as time rather than percentages  | USR INPUT
-      automated_time_to_reissue = 3, // 3% 2/60 revisit this as easier to input time, surely...
+      automated_time_to_reissue = 3.333, // 3% 2/60 revisit this as easier to input time, surely...
       estimated_time_savings = estimated_time_to_reissue - automated_time_to_reissue,
       hourly_call_center_wages = 0; //  | USR INPUT
 
@@ -45,7 +45,7 @@ var ARR = (function () {
    * @param input
    */
   function setShareOfTicketsReissued (input) {
-    share_of_tickets_reissued_high = input;
+    share_of_tickets_reissued = input;
   }
 
   /**
@@ -54,7 +54,7 @@ var ARR = (function () {
    */
   function getShareOfTicketsReissued (type) {
     if (type === "high") {
-      return share_of_tickets_reissued_high;
+      return share_of_tickets_reissued;
     } else {
       return share_of_tickets_reissued_low;
     }
@@ -97,7 +97,7 @@ var ARR = (function () {
    * @returns {number}
    */
   function efficiencyGains (type) {
-    return estimated_time_savings / 100 * estimatedNumberOfTicketsReissued(type);
+    return Math.floor(estimated_time_savings / 100 * estimatedNumberOfTicketsReissued(type));
   }
 
   /**

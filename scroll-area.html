@@ -1,0 +1,21 @@
+<div id="scrollarea" class="row">
+    <div class="col-md-12 white-content text-center">
+        <div class="col-md-4 col-md-offset-4 mt-5">
+            <h1 class="mb-2">Horizon Value Calculator</h1>
+            <form ng-controller="CalcData" novalidate>
+                <div class="col-md-10 col-md-offset-1">
+                    <input ng-model="session.username" ng-model-options="{ debounce: 250 }" class="form-control input-lg" placeholder="Username...">
+                    <input ng-model="session.info" ng-model-options="{ debounce: 250 }" class="form-control input-lg" placeholder="Data...">
+                </div>
+                <div class="col-md-10 col-md-offset-1 input-group">
+                    <input ng-model="session.name" ng-model-options="{ debounce: 250 }" class="form-control input-lg" placeholder="Session name...">
+                    <button class="btn btn-success btn-lg" type="submit">Start <span class="glyphicon glyphicon-chevron-right"></span></button>
+                </div>
+                <p>data: {{ session | json }}</p>
+            </form>
+            <blockquote>
+                <p>data: {{ session | json }}</p>
+            </blockquote>
+        </div>
+    </div>
+</div>

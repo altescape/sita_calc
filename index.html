@@ -1,127 +1,168 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html ng-app="hozCalc">
 <head>
     <title>Horizon Calculator</title>
+
+    <script type="text/javascript" src="/scripts/calculator/config.js"></script>
+    <script type="text/javascript" src="/scripts/helpers/numbers.js"></script>
+    <script type="text/javascript" src="/scripts/helpers/helpers.js"></script>
+    <script type="text/javascript" src="/scripts/calculator/revenue_integrity.js"></script>
+    <script type="text/javascript" src="/scripts/calculator/airfare_reprice_refund.js"></script>
+    <script type="text/javascript" src="/scripts/calculator/airfight_insight.js"></script>
+    <script type="text/javascript" src="/scripts/calculator/emd_hsf_merchandising.js"></script>
+
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
     <link rel="icon"
           type="image/png"
           href="/images/favicon.png">
 
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/app.css">
+    <link rel="stylesheet" href="/bower_components/offline/themes/offline-theme-dark.css">
+    <link rel="stylesheet" href="/bower_components/offline/themes/offline-language-english.css"/>
 
 </head>
-<body>
+<body ng-controller="CalcController">
 
-<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>-->
+<div class="snap-drawers">
+    <div class="snap-drawer snap-drawer-left">
+        <div class="padder">
+            <ul class="list-unstyled side-nav">
+                <li><a href="#"><img src="http://placehold.it/40x40"> Username</a></li>
+                <li>
+                    <span class="online">
+                        <a href="#"><img src="/images/network-connected.png"> Online</a>
+                    </span>
+                    <span class="offline">
+                        <a href="#"><img src="/images/network-not-connected.png"> Offline</a>
+                    </span>
+                </li>
+                <li><a href="#"><img src="/images/nav-icon-graph.png"> Sessions</a></li>
+                <li><a href="#"><img src="/images/nav-icon-graphics.png"> Captured Screens</a></li>
+                <li><a href="#"><img src="/images/nav-icon-logout.png"> Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="snap-drawer snap-drawer-right">
+        Hello right
+    </div>
+</div>
+
+<div id="content" class="snap-content container-fluid">
+    <div id="mainnav" class="row">
+        <nav class="col-md-12 main-nav white-content" role="navigation">
+            <a id="open-left" class="open-left">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <p class="network-status text-center"><span class="online">ONLINE</span><span class="offline">OFFLINE</span></p>
+        </nav>
+    </div>
+    <scroll-area></scroll-area>
+    <div id="footbar" class="row white-content">
+        <div class="col-md-3 text-left"><img src="/images/logo-small.png"></div>
+        <div class="col-md-1 text-right col-no-padding"><a href="#" class="pager-nav pager-nav-prev"><span class="glyphicon glyphicon-arrow-left"></span> PREV</a></div>
+        <div class="col-md-4 text-center question-progress"><span style="width: 33%"></span> QUESTIONS | 33%</div>
+        <div class="col-md-1 text-left col-no-padding"><a href="#" class="pager-nav pager-nav-next">NEXT <span class="glyphicon glyphicon-arrow-right"></span></a></div>
+        <div class="col-md-3 text-right"><a id="open-right">UNANSWERED</a></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/bower_components/jQuery/dist/jquery.min.js"></script>
 <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>-->
 <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>-->
-<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script src="scripts/config.js"></script>
-<script src="scripts/numbers.js"></script>
-<script src="scripts/helpers.js"></script>
-<script src="scripts/revenue_integrity.js"></script>
-<script src="scripts/airfare_reprice_refund.js"></script>
-<script src="scripts/airfight_insight.js"></script>
-<script src="scripts/emd_hsf_merchandising.js"></script>
+<script type="text/javascript" src="/scripts/ui/snap.js"></script>
+<script type="text/javascript" src="/scripts/ui/fastclick.js"></script>
+<script type="text/javascript" src="/scripts/ui/appscroll.min.js"></script>
+
+<script type="text/javascript" src="/bower_components/offline/offline.min.js"></script>
+<script type="text/javascript" src="/bower_components/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
 
 <script>
-    window.onload = (function () {
-        var c = console;
+
+    var snapper = new Snap({
+        element: document.getElementById('content')
+    });
+
+    var addEvent = function addEvent (element, eventName, func) {
+        if (element.addEventListener) {
+            return element.addEventListener(eventName, func, false);
+        } else if (element.attachEvent) {
+            return element.attachEvent("on" + eventName, func);
+        }
+    };
+
+    $('#open-left').on('click', function () {
+        if (snapper.state().state == "left") {
+            snapper.close();
+        } else {
+            snapper.open('left');
+        }
+    });
+
+    $('#open-right').on('click', function () {
+        if (snapper.state().state == "right") {
+            snapper.close();
+        } else {
+            snapper.open('right');
+        }
+    });
+
+    var contentArea = $('#content'),
+      scrollArea = $('#scrollarea');
+
+    $(window).resize(function () {
+        resizeContentWrapper(contentArea);
+        resizeContentInner(scrollArea);
+    });
 
 
-        var highValues = new CONFIG;
-        highValues.revenue_improvement = 1.6;
-        highValues.revenue_integrity = 20;
-        highValues.insight_pricing = 10;
-        highValues.ancillary_revenues_percentage = 7;
+    function resizeContentWrapper (ele_id) {
+        ele_id.css('height', $(window).height());
+    }
 
-        var lowValues = new CONFIG;
-        lowValues.revenue_improvement = 0.8;
-        lowValues.revenue_integrity = 10;
-        highValues.insight_pricing = 3;
-        highValues.ancillary_revenues_percentage = 4;
+    function resizeContentInner (ele_id) {
+        var height = $(window).height() - $('#mainnav').height() - $('#footbar').height();
+        ele_id.css('height', height);
+    }
 
-        c.log(highValues);
-        c.log(lowValues);
+    // Document load
+    $(function () {
+        resizeContentWrapper(contentArea);
+        resizeContentInner(scrollArea);
+        FastClick.attach(document.body);
 
+        Offline.options = {
+            checkOnLoad: true,
+            reconnect  : {
+                // How many seconds should we wait before rechecking.
+                initialDelay: 15,
 
-        c.log("Revenue Integrity");
-        REVENUE_INTEGRITY.setUserInput(HELPERS.numberCheck(600000000));
-        c.log("[UI]: $" + NUMBER.toString(REVENUE_INTEGRITY.getUserInput()));
-        c.log("[RH]: $" + NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityCombinedHigh()));
-        c.log("[RL]: $" + NUMBER.toString(REVENUE_INTEGRITY.revenueIntegrityCombinedLow()));
+                // How long should we wait between retries.
+                delay       : (1.5)
+            }
+        };
 
+        var
+          $online = $('.online'),
+          $offline = $('.offline');
 
-        c.log('**************************');
+        Offline.on('confirmed-down', function () {
+            $online.fadeOut(function () {
+                $offline.fadeIn();
+            });
+        });
 
-
-        c.log("ARR - Airfare Reprice Refund");
-        c.log("Agent efficiency savings");
-
-        ARR.setUserInput(HELPERS.numberCheck(6000000));
-        c.log("[UI]: $" + NUMBER.toString(ARR.getUserInput()));
-
-        ARR.setShareOfTicketsReissued(HELPERS.numberCheck(5));
-        c.log("[UI]: share of tickets reissued... " + ARR.getShareOfTicketsReissued() + "%");
-
-        ARR.setEstimatedTimeToReissue(HELPERS.numberCheck(5));
-        c.log("[UI]: estimated time to reissue... " + ARR.getEstimatedTimeToReissue() + "%");
-
-        ARR.setHourlyCallCenterWages(HELPERS.numberCheck(1000000));
-        c.log("[UI]: hourly call center wages $" + NUMBER.toString(ARR.getHourlyCallCenterWages()));
-
-        ARR.setEstimatedShareOfTicketsOnWhichFeesWereNotCorrectlyCollected(HELPERS.numberCheck(10));
-        c.log("[UI]: estimated share of tickets... " + NUMBER.toString(ARR.getEstimatedShareOfTicketsOnWhichFeesWereNotCorrectlyCollected()) + "%");
-
-        ARR.setEstimatedIncrementalCollectionsPerARRTransaction(HELPERS.numberCheck(200000));
-        c.log("[UI]: estimated incremental collections... $" + NUMBER.toString(ARR.getEstimatedIncrementalCollectionsPerARRTransaction()));
-
-        c.log("[RH]: $" + NUMBER.toString(ARR.totalARRWageSavingsFeeCollectionGains("high")));
-        c.log("[RL]: $" + NUMBER.toString(ARR.totalARRWageSavingsFeeCollectionGains("low")));
-
-
-        c.log('**************************');
-
-
-        c.log("AFI - Airfare Insight");
-        c.log("Air revenue");
-
-        AFI.setUserInput(HELPERS.numberCheck(2000000));
-        c.log("[UI]: " + NUMBER.toString(AFI.getUserInput()));
-        c.log("[RH] Contribution: $" + NUMBER.toString(AFI.contribution(highValues.insight_pricing)));
-        c.log("[RL] Contribution: $" + NUMBER.toString(AFI.contribution(lowValues.insight_pricing)));
-
-
-        c.log('**************************');
-
-
-
-        c.log("HSF/EMD Merchandising Value");
-        EMD_HSF_MERCH.setUserInput(HELPERS.numberCheck(500000));
-        c.log("[UI]: " + NUMBER.toString(EMD_HSF_MERCH.getUserInput()));
-        c.log("[RH]: $" + NUMBER.toString(EMD_HSF_MERCH.potentialRevenueIncrease(highValues.ancillary_revenues_percentage)));
-        c.log("[RL]: $" + NUMBER.toString(EMD_HSF_MERCH.potentialRevenueIncrease(lowValues.ancillary_revenues_percentage)));
-
-
-        c.log('**************************');
-        c.log("Revenue/Savings swing");
-        c.log("[RH]:");
-        c.log(NUMBER.toString(
-              REVENUE_INTEGRITY.revenueIntegrityCombinedHigh() +
-              ARR.totalARRWageSavingsFeeCollectionGains("high") +
-              AFI.contribution(highValues.insight_pricing) +
-              EMD_HSF_MERCH.potentialRevenueIncrease(highValues.ancillary_revenues_percentage)
-            ));
-
-        c.log("[LH]:");
-        c.log(NUMBER.toString(
-          REVENUE_INTEGRITY.revenueIntegrityCombinedLow() +
-          ARR.totalARRWageSavingsFeeCollectionGains("low") +
-          AFI.contribution(lowValues.insight_pricing) +
-          EMD_HSF_MERCH.potentialRevenueIncrease(lowValues.ancillary_revenues_percentage)
-        ));
-
+        Offline.on('confirmed-up', function () {
+            $offline.fadeOut(function () {
+                $online.fadeIn();
+            });
+        });
 
     });
 </script>
