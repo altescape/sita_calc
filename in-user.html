@@ -1,0 +1,7 @@
+<div class="col-md-10 col-md-offset-1">
+    <input required ng-model="user.username" ng-change="user.setInput(user)" ng-model-options="{ debounce: 250 }" class="form-control input-lg input-xlg mb-1" placeholder="Your name...">
+</div>
+<div class="col-md-10 col-md-offset-1 postfix-action">
+    <input ng-model="user.session_name" ng-change="user.setInput(user)" ng-model-options="{ debounce: 250 }" class="form-control input-lg input-xlg" placeholder="Session name...">
+    <a href="/#/calculator" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
+</div>

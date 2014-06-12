@@ -38,7 +38,7 @@ a {
   a, p, li, h1, h2, h3, h4, h5, h6 {color: white;}
 }
 
-.offline, .online {display: none;}
+.offline, .online {}
 
 $class-slug: mb;
 @for $i from 1 through 5 {
@@ -125,11 +125,6 @@ $class-slug: mt;
 .main-nav {
   padding-top: 15px;
   padding-bottom: 15px;
-}
-.network-status {
-  line-height: 35px;
-  margin: 0;
-  font-size: 12px;
 }
 
 .open-left {
@@ -236,29 +231,32 @@ $class-slug: mt;
 
 $input-group-height: 54px;
 $input-group-fontsize: $input-group-height/2.2;
-.input-group {
+.input-xlg {
+  height: $input-group-height;
+  line-height: 30px;
+  font-size: $input-group-fontsize;
+  padding: 0;
+  border: none;
+  text-indent: 10px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+.postfix-action {
   position: relative;
   height: $input-group-height;
   overflow: hidden;
   margin-bottom: 10px;
   .form-control {
     width: 70%;
-    height: $input-group-height;
-    line-height: 30px;
-    font-size: $input-group-fontsize;
-    padding: 0;
-    border: none;
-    text-indent: 10px;
-    border: none;
-    &:focus {
-      outline: none;
-    }
+    @extend .input-xlg;
   }
   .btn {
     position: absolute;
     height: $input-group-height;
     line-height: $input-group-height;
-    right: 0;
+    right: 15px;
     top: 0;
     margin: 0;
     padding: 0;

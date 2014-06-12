@@ -1,0 +1,19 @@
+<div class="snap-drawer snap-drawer-left">
+    <div class="padder">
+        <ul class="list-unstyled side-nav">
+            <li><a href="/#/user"><img src="/images/nav-icon-user.png">{{ nav.user }}</a></li>
+            <li><a href="/#/user"><img src="/images/nav-icon-user.png">{{ nav.session_name }}</a></li>
+            <li>
+                    <span class="online" ng-show="nav.isNetUp">
+                        <a href="#"><img src="/images/network-connected.png"> Online</a>
+                    </span>
+                    <span class="offline" ng-hide="nav.isNetUp">
+                        <a href="#"><img src="/images/network-not-connected.png"> Offline</a>
+                    </span>
+            </li>
+            <li><a href="#"><img src="/images/nav-icon-graph.png"> Sessions</a></li>
+            <li><a href="#"><img src="/images/nav-icon-graphics.png"> Captured Screens</a></li>
+            <li><a href="#"><img src="/images/nav-icon-logout.png"> Log Out</a></li>
+        </ul>
+    </div>
+</div>
