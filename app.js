@@ -8,9 +8,7 @@
 
   var app = angular.module('hozCalc', ['ngStorage', 'ngRoute']);
 
-  app.controller('CalcController', function ($scope, $localStorage) {
-
-    this.sessData = session_data;
+  app.controller('CalcController', function () {
 
     FastClick.attach(document.body);
 
@@ -156,11 +154,24 @@
     }
   });
 
-  app.controller('UserCtrl', ['$route', '$routeParams', '$location',
-    function($route, $routeParams, $location) {
+  app.controller('UserCtrl', ['$route', '$routeParams', '$location', '$localStorage',
+    function($route, $routeParams, $location, $localStorage) {
       this.$route = $route;
       this.$location = $location;
       this.$routeParams = $routeParams;
+
+      this.username = $localStorage.username;
+      this.session_name = $localStorage.session_name ;
+
+      this.setInput = function (information) {
+
+        this.username = information.username;
+        this.session_name = information.session_name;
+
+        $localStorage.username = information.username;
+        $localStorage.session_name = information.session_name;
+      };
+
     }]);
 
   app.config(['$routeProvider', '$locationProvider',
@@ -176,13 +187,5 @@
           })
     }
   ]);
-
-  var session_data = [
-    {
-      username: 'user 1',
-      name    : 'session 1',
-      info    : 'something'
-    }
-  ];
 
 })();

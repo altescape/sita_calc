@@ -37,9 +37,6 @@
     <div id="mainnav" class="row">
         <main-nav></main-nav>
     </div>
-    <div ng-controller="UserCtrl" class="col-md-10 col-md-offset-1">
-        <ng-view></ng-view>
-    </div>
     <scroll-area></scroll-area>
     <div id="footbar" class="row white-content">
         <div class="col-md-3 text-left"><img src="/images/logo-small.png"></div>
@@ -61,29 +58,5 @@
 
 <script type="text/javascript" src="/bower_components/offline/offline.min.js"></script>
 <script type="text/javascript" src="/bower_components/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
-
-<script>
-
-    // Document load
-    $(function () {
-
-        var
-          $online = $('.online'),
-          $offline = $('.offline');
-
-        Offline.on('confirmed-down', function () {
-            $online.fadeOut(function () {
-                $offline.fadeIn();
-            });
-        });
-
-        Offline.on('confirmed-up', function () {
-            $offline.fadeOut(function () {
-                $online.fadeIn();
-            });
-        });
-
-    });
-</script>
 </body>
 </html>

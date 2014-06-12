@@ -2,7 +2,7 @@
 
 $brand-colour: #FC0;
 $button-colour: #610704;
-
+$background-color: #CD4430;
 html, body {
   font-family: sans-serif;
   margin: 0;
@@ -10,7 +10,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url(/images/dark-background.jpg) no-repeat center center fixed;
+  background: url(/images/dark-background.jpg) no-repeat center center fixed darken($background-color, 15%);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,7 +22,7 @@ a {
   transition: all 0.1s ease-in-out;
 }
 #content {
-  background: url(/images/vibrant-background.jpg) no-repeat center center fixed;
+  background: url(/images/vibrant-background.jpg) no-repeat center center fixed $background-color;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
