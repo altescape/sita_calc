@@ -1,0 +1,27 @@
+{
+  "name": "sita_calc",
+  "version": "0.0.1",
+  "homepage": "https://github.com/altescape/sita_calc",
+  "authors": [
+    "Michael Watts <hello@michaelwatts.me>"
+  ],
+  "description": "Horizon Value Prop Calculator",
+  "main": "index.html",
+  "keywords": [
+    "angularjs"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.17",
+    "ngstorage": "~0.3.0",
+    "angular-route": "~1.2.17"
+  }
+}
