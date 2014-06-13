@@ -41,12 +41,12 @@ a, button {
 .offline, .online {}
 
 $class-slug: mb;
-@for $i from 1 through 5 {
-  .#{$class-slug}-#{$i} {margin-bottom: #{$i}em;}
+@for $i from 0 through 10 {
+  .#{$class-slug}-#{$i * 5} {margin-bottom: #{$i * 5}px;}
 }
 $class-slug: mt;
-@for $i from 1 through 5 {
-  .#{$class-slug}-#{$i} {margin-top: #{$i}em;}
+@for $i from 0 through 10 {
+  .#{$class-slug}-#{$i * 5} {margin-top: #{$i * 5}px;}
 }
 
 // SNAP STYLES
@@ -101,6 +101,7 @@ $class-slug: mt;
 .snap-drawer-left {
   left: 0;
   z-index: 1;
+  position: relative;
 }
 
 .snap-drawer-right {
@@ -275,6 +276,38 @@ $input-group-fontsize: $input-group-height/2.2;
     }
   }
 }
+.postfix-label {
+  position: relative;
+  height: $input-group-height;
+  overflow: hidden;
+  margin-bottom: 10px;
+  .form-control {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    @extend .input-xlg;
+    border-radius: 5px 0 0 5px;
+  }
+  .label {
+    $label-color: #CCC;
+    z-index: 1;
+    position: absolute;
+    height: $input-group-height;
+    line-height: $input-group-height;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    background-color: $label-color;
+    color: darken($label-color, 25%);
+    border: none;
+    width: 33%;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0 5px 5px 0;
+    .glyphicon {font-weight: normal}
+  }
+}
 .postfix-choice, .input-choices-group {
     height: $input-group-height * 1.2;
   .choice-left, .choice-right {
@@ -308,11 +341,19 @@ $input-group-fontsize: $input-group-height/2.2;
     left: 15px;
   }
   input.radio:empty {
+    margin: 0 !important;
     margin-left: -999px !important;
-    visibility: hidden;
+    visibility: hidden !important;
+    height: 0 !important;
+    padding: 0 !important;
   }
 }
-
+.input-widths-small {
+  width: 50%;
+}
+.input-widths-tiny {
+  width: 30%;
+}
 .col-no-padding {padding: 0}
 
 .pager-nav {
@@ -339,4 +380,8 @@ $input-group-fontsize: $input-group-height/2.2;
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
   }
+}
+
+label {
+  font-weight: normal;
 }

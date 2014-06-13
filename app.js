@@ -34,10 +34,10 @@
       controller  : function ($localStorage) {
 
         this.settings = {
-          disable: 'right',
+          disable        : 'right',
           hyperextensible: false,
           transitionSpeed: 0.3,
-          easing: 'ease'
+          easing         : 'ease'
         }
 
         // Init snap
@@ -124,75 +124,125 @@
     };
   });
 
-  app.directive("inUser", function () {
-    return {
-      restrict    : "E",
-      templateUrl : "in-user.html",
-      controller  : function ($localStorage) {
+//  app.directive("inUser", function () {
+//    return {
+//      restrict    : "E",
+//      templateUrl : "in-user.html",
+//      controller  : function ($localStorage) {
+//
+//        this.username = $localStorage.username;
+//        this.session_name = $localStorage.session_name;
+//
+//        this.setInput = function (information) {
+//
+//          this.username = information.username;
+//          this.session_name = information.session_name;
+//
+//          $localStorage.username = information.username;
+//          $localStorage.session_name = information.session_name;
+//        };
+//      },
+//      controllerAs: "user"
+//    }
+//  });
 
-        this.username = $localStorage.username;
-        this.session_name = $localStorage.session_name ;
+//  app.directive("inRevenueIntegrity", function () {
+//    return {
+//      restrict    : "E",
+//      templateUrl : "in-revenue-integrity.html",
+//      controller  : function ($localStorage) {
+//
+//        this.calculations = {};
+//        this.ri_airline_revenue = $localStorage.ri_airline_revenue;
+//        this.option1 = $localStorage.option1;
+//
+//        this.setInput = function (input) {
+//
+//          this.ri_airline_revenue = input.ri_airline_revenue;
+//          this.option1 = input.option1;
+//
+//          $localStorage.ri_airline_revenue = input.ri_airline_revenue;
+//        };
+//
+//      },
+//      controllerAs: "ri"
+//    }
+//  });
 
-        this.setInput = function (information) {
+  app.factory('Data', ['$localStorage',
+    function ($localStorage) {
+      return {
+        username: $localStorage.username,
+        session_name : $localStorage.session_name,
+        ri_airline_revenue : $localStorage.ri_airline_revenue,
+        option1 : $localStorage.option1
+      }
+    }]);
 
-          this.username = information.username;
-          this.session_name = information.session_name;
+  app.controller('UserCtrl', ['$route', '$routeParams', '$location', '$localStorage', 'Data',
+    function ($route, $routeParams, $location, $localStorage, Data) {
 
-          $localStorage.username = information.username;
-          $localStorage.session_name = information.session_name;
-        };
-      },
-      controllerAs: "user"
-    }
-  });
-
-  app.directive("inRevenueIntegrity", function () {
-    return {
-      restrict    : "E",
-      templateUrl : "in-revenue-integrity.html",
-      controller  : function ($localStorage) {
-
-        this.calculations = {};
-
-        this.setInput = function (input) {
-          $localStorage.ri_airline_revenue = input.ri_airline_revenue;
-        };
-
-      },
-      controllerAs: "ri"
-    }
-  });
-
-  app.controller('UserCtrl', ['$route', '$routeParams', '$location', '$localStorage',
-    function($route, $routeParams, $location, $localStorage) {
+      /* Route variables */
       this.$route = $route;
       this.$location = $location;
       this.$routeParams = $routeParams;
 
-      this.username = $localStorage.username;
-      this.session_name = $localStorage.session_name ;
+      console.info(Data);
 
-      this.setInput = function (information) {
+      /* Localise Data Factory */
+      this.data = Data;
 
-        this.username = information.username;
-        this.session_name = information.session_name;
+      /* For output */
+      this.username = this.data.username;
+      this.session_name = this.data.session_name;
 
-        $localStorage.username = information.username;
-        $localStorage.session_name = information.session_name;
+      /* Set input */
+      this.setInput = function (input) {
+
+        /* Save to data factory */
+        this.data.username = input.username;
+        this.data.session_name = input.session_name;
+
+        /* Save to local storage */
+        $localStorage.username = input.username;
+        $localStorage.session_name = input.session_name;
+
+        console.log(this.data);
       };
 
     }]);
 
-  app.controller('RiCtrl', ['$route', '$routeParams', '$location', '$localStorage',
-    function($route, $routeParams, $location, $localStorage) {
+  app.controller('RiCtrl', ['$route', '$routeParams', '$location', '$localStorage', 'Data',
+    function ($route, $routeParams, $location, $localStorage, Data) {
+
+      this.title = "Service";
+
+      /* Route variables */
       this.$route = $route;
       this.$location = $location;
       this.$routeParams = $routeParams;
 
-      this.calculations = {};
+      console.info(Data);
 
+      /* Localise Data Factory */
+      this.data = Data;
+
+      /* For output */
+      this.ri_airline_revenue = this.data.ri_airline_revenue;
+      this.option1 = this.data.option1;
+
+      /* Set input */
       this.setInput = function (input) {
+
+        /* Save to data factory */
+        this.data.ri_airline_revenue = input.ri_airline_revenue;
+        this.data.option1 = input.option1;
+
+        /* Save to local storage */
         $localStorage.ri_airline_revenue = input.ri_airline_revenue;
+        $localStorage.option1 = input.option1;
+
+        console.log(this.data);
       };
 
     }]);
@@ -205,7 +255,7 @@
             controller : 'UserCtrl'
           }).
           when('/calculator', {
-            templateUrl: 'in-revenue-integrity.html',
+            templateUrl: 'calculator.html',
             controller : 'RiCtrl'
           }).
           otherwise({

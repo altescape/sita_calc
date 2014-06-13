@@ -39,44 +39,92 @@ a, button {
     color: white; }
 
 /* line 45, app.scss */
-.mb-1 {
-  margin-bottom: 1em; }
-
-/* line 45, app.scss */
-.mb-2 {
-  margin-bottom: 2em; }
-
-/* line 45, app.scss */
-.mb-3 {
-  margin-bottom: 3em; }
-
-/* line 45, app.scss */
-.mb-4 {
-  margin-bottom: 4em; }
+.mb-0 {
+  margin-bottom: 0px; }
 
 /* line 45, app.scss */
 .mb-5 {
-  margin-bottom: 5em; }
+  margin-bottom: 5px; }
+
+/* line 45, app.scss */
+.mb-10 {
+  margin-bottom: 10px; }
+
+/* line 45, app.scss */
+.mb-15 {
+  margin-bottom: 15px; }
+
+/* line 45, app.scss */
+.mb-20 {
+  margin-bottom: 20px; }
+
+/* line 45, app.scss */
+.mb-25 {
+  margin-bottom: 25px; }
+
+/* line 45, app.scss */
+.mb-30 {
+  margin-bottom: 30px; }
+
+/* line 45, app.scss */
+.mb-35 {
+  margin-bottom: 35px; }
+
+/* line 45, app.scss */
+.mb-40 {
+  margin-bottom: 40px; }
+
+/* line 45, app.scss */
+.mb-45 {
+  margin-bottom: 45px; }
+
+/* line 45, app.scss */
+.mb-50 {
+  margin-bottom: 50px; }
 
 /* line 49, app.scss */
-.mt-1 {
-  margin-top: 1em; }
-
-/* line 49, app.scss */
-.mt-2 {
-  margin-top: 2em; }
-
-/* line 49, app.scss */
-.mt-3 {
-  margin-top: 3em; }
-
-/* line 49, app.scss */
-.mt-4 {
-  margin-top: 4em; }
+.mt-0 {
+  margin-top: 0px; }
 
 /* line 49, app.scss */
 .mt-5 {
-  margin-top: 5em; }
+  margin-top: 5px; }
+
+/* line 49, app.scss */
+.mt-10 {
+  margin-top: 10px; }
+
+/* line 49, app.scss */
+.mt-15 {
+  margin-top: 15px; }
+
+/* line 49, app.scss */
+.mt-20 {
+  margin-top: 20px; }
+
+/* line 49, app.scss */
+.mt-25 {
+  margin-top: 25px; }
+
+/* line 49, app.scss */
+.mt-30 {
+  margin-top: 30px; }
+
+/* line 49, app.scss */
+.mt-35 {
+  margin-top: 35px; }
+
+/* line 49, app.scss */
+.mt-40 {
+  margin-top: 40px; }
+
+/* line 49, app.scss */
+.mt-45 {
+  margin-top: 45px; }
+
+/* line 49, app.scss */
+.mt-50 {
+  margin-top: 50px; }
 
 /* line 53, app.scss */
 .snap-content {
@@ -133,43 +181,44 @@ a, button {
 /* line 101, app.scss */
 .snap-drawer-left {
   left: 0;
-  z-index: 1; }
+  z-index: 1;
+  position: relative; }
 
-/* line 106, app.scss */
+/* line 107, app.scss */
 .snap-drawer-right {
   right: 0;
   z-index: 1; }
 
-/* line 112, app.scss */
+/* line 113, app.scss */
 .snapjs-left .snap-drawer-right,
 .snapjs-right .snap-drawer-left {
   display: none; }
 
-/* line 117, app.scss */
+/* line 118, app.scss */
 .snapjs-expand-left .snap-drawer-left,
 .snapjs-expand-right .snap-drawer-right {
   width: 100%; }
 
-/* line 121, app.scss */
+/* line 122, app.scss */
 .ninja {
   visibility: hidden; }
 
-/* line 125, app.scss */
+/* line 126, app.scss */
 .main-nav {
   padding-top: 15px;
   padding-bottom: 15px; }
 
-/* line 130, app.scss */
+/* line 131, app.scss */
 .open-left {
   display: block;
   width: 36px;
   height: 36px;
   position: relative;
   float: left; }
-  /* line 136, app.scss */
+  /* line 137, app.scss */
   .open-left:hover {
     cursor: pointer; }
-  /* line 137, app.scss */
+  /* line 138, app.scss */
   .open-left span {
     background-color: white;
     display: block;
@@ -184,22 +233,22 @@ a, button {
     transform-origin: 4px;
     -webkit-transform-origin: 4px;
     -moz-transform-origin: 4px; }
-    /* line 151, app.scss */
+    /* line 152, app.scss */
     .open-left span:nth-child(2) {
       top: 15px; }
-    /* line 154, app.scss */
+    /* line 155, app.scss */
     .open-left span:last-child {
       top: 25px; }
 
-/* line 162, app.scss */
+/* line 163, app.scss */
 .snapjs-left .open-left span:first-child {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg); }
-/* line 167, app.scss */
+/* line 168, app.scss */
 .snapjs-left .open-left span:nth-child(2) {
   opacity: 0; }
-/* line 170, app.scss */
+/* line 171, app.scss */
 .snapjs-left .open-left span:last-child {
   transform-origin: 18px -3px;
   -webkit-transform-origin: 18px -3px;
@@ -209,28 +258,28 @@ a, button {
   -moz-transform: rotate(-225deg);
   -o-transform: rotate(-225deg); }
 
-/* line 184, app.scss */
+/* line 185, app.scss */
 .side-nav li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1.8em 0;
   font-size: 12px; }
-  /* line 188, app.scss */
+  /* line 189, app.scss */
   .side-nav li:first-child {
     padding-top: 0.5em; }
-  /* line 189, app.scss */
+  /* line 190, app.scss */
   .side-nav li:last-child {
     border: none; }
-  /* line 190, app.scss */
+  /* line 191, app.scss */
   .side-nav li a {
     opacity: 0.7; }
-    /* line 192, app.scss */
+    /* line 193, app.scss */
     .side-nav li a:hover {
       opacity: 1;
       text-decoration: none; }
-      /* line 195, app.scss */
+      /* line 196, app.scss */
       .side-nav li a:hover img {
         opacity: 1; }
-    /* line 197, app.scss */
+    /* line 198, app.scss */
     .side-nav li a img {
       opacity: .5;
       margin-right: 1em;
@@ -239,7 +288,7 @@ a, button {
       -moz-transition: all 0.4s ease-in-out;
       transition: all 0.4s ease-in-out; }
 
-/* line 209, app.scss */
+/* line 210, app.scss */
 #footbar {
   background-color: rgba(0, 0, 0, 0.3);
   height: 50px;
@@ -249,21 +298,21 @@ a, button {
   bottom: 0;
   left: 15px;
   right: 15px; }
-  /* line 218, app.scss */
+  /* line 219, app.scss */
   #footbar a:hover {
     text-decoration: none; }
 
-/* line 223, app.scss */
+/* line 224, app.scss */
 .panel.see-thro {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.1);
   padding: 4em; }
-  /* line 227, app.scss */
+  /* line 228, app.scss */
   .panel.see-thro h1 {
     margin: 0 0 1.5em 0; }
 
-/* line 234, app.scss */
-.input-xlg, .postfix-action .form-control {
+/* line 235, app.scss */
+.input-xlg, .postfix-action .form-control, .postfix-label .form-control {
   height: 54px;
   line-height: 30px;
   font-size: 24.54545px;
@@ -271,20 +320,20 @@ a, button {
   border: none;
   text-indent: 10px;
   border: none; }
-  /* line 242, app.scss */
-  .input-xlg:focus, .postfix-action .form-control:focus {
+  /* line 243, app.scss */
+  .input-xlg:focus, .postfix-action .form-control:focus, .postfix-label .form-control:focus {
     outline: none; }
 
-/* line 246, app.scss */
+/* line 247, app.scss */
 .postfix-action {
   position: relative;
   height: 54px;
   overflow: hidden;
   margin-bottom: 10px; }
-  /* line 251, app.scss */
+  /* line 252, app.scss */
   .postfix-action .form-control {
     width: 70%; }
-  /* line 255, app.scss */
+  /* line 256, app.scss */
   .postfix-action .btn {
     position: absolute;
     height: 54px;
@@ -300,19 +349,52 @@ a, button {
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 0 5px 5px 0; }
-    /* line 270, app.scss */
+    /* line 271, app.scss */
     .postfix-action .btn .glyphicon {
       font-weight: normal; }
-    /* line 271, app.scss */
+    /* line 272, app.scss */
     .postfix-action .btn:hover {
       background-color: #300302;
       color: #fb9f9c;
       cursor: pointer; }
 
-/* line 278, app.scss */
+/* line 279, app.scss */
+.postfix-label {
+  position: relative;
+  height: 54px;
+  overflow: hidden;
+  margin-bottom: 10px; }
+  /* line 284, app.scss */
+  .postfix-label .form-control {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    border-radius: 5px 0 0 5px; }
+  /* line 291, app.scss */
+  .postfix-label .label {
+    z-index: 1;
+    position: absolute;
+    height: 54px;
+    line-height: 54px;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #cccccc;
+    color: #8c8c8c;
+    border: none;
+    width: 33%;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0 5px 5px 0; }
+    /* line 308, app.scss */
+    .postfix-label .label .glyphicon {
+      font-weight: normal; }
+
+/* line 311, app.scss */
 .postfix-choice, .input-choices-group {
   height: 64.8px; }
-  /* line 280, app.scss */
+  /* line 313, app.scss */
   .postfix-choice .choice-left, .postfix-choice .choice-right, .input-choices-group .choice-left, .input-choices-group .choice-right {
     height: 64.8px;
     line-height: 64.8px;
@@ -325,48 +407,59 @@ a, button {
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 5px; }
-    /* line 292, app.scss */
+    /* line 325, app.scss */
     .postfix-choice .choice-left.active, .postfix-choice .choice-right.active, .input-choices-group .choice-left.active, .input-choices-group .choice-right.active {
       background-color: #300302 !important;
       color: yellowgreen !important; }
-    /* line 296, app.scss */
+    /* line 329, app.scss */
     .postfix-choice .choice-left .glyphicon, .postfix-choice .choice-right .glyphicon, .input-choices-group .choice-left .glyphicon, .input-choices-group .choice-right .glyphicon {
       font-weight: normal; }
-    /* line 297, app.scss */
+    /* line 330, app.scss */
     .postfix-choice .choice-left:hover, .postfix-choice .choice-right:hover, .input-choices-group .choice-left:hover, .input-choices-group .choice-right:hover {
       background-color: #300302;
       color: #fb9f9c;
       cursor: pointer; }
-    /* line 302, app.scss */
+    /* line 335, app.scss */
     .postfix-choice .choice-left:focus, .postfix-choice .choice-right:focus, .input-choices-group .choice-left:focus, .input-choices-group .choice-right:focus {
       outline: none; }
-  /* line 306, app.scss */
+  /* line 339, app.scss */
   .postfix-choice .choice-left, .input-choices-group .choice-left {
     right: auto;
     left: 15px; }
-  /* line 310, app.scss */
+  /* line 343, app.scss */
   .postfix-choice input.radio:empty, .input-choices-group input.radio:empty {
+    margin: 0 !important;
     margin-left: -999px !important;
-    visibility: hidden; }
+    visibility: hidden !important;
+    height: 0 !important;
+    padding: 0 !important; }
 
-/* line 316, app.scss */
+/* line 351, app.scss */
+.input-widths-small {
+  width: 50%; }
+
+/* line 354, app.scss */
+.input-widths-tiny {
+  width: 30%; }
+
+/* line 357, app.scss */
 .col-no-padding {
   padding: 0; }
 
-/* line 318, app.scss */
+/* line 359, app.scss */
 .pager-nav {
   display: block;
   background-color: rgba(0, 0, 0, 0.3);
   text-align: center; }
-  /* line 322, app.scss */
+  /* line 363, app.scss */
   .pager-nav:hover {
     background-color: rgba(0, 0, 0, 0.7); }
 
-/* line 327, app.scss */
+/* line 368, app.scss */
 .question-progress {
   background-color: transparent;
   position: relative; }
-  /* line 330, app.scss */
+  /* line 371, app.scss */
   .question-progress span {
     position: absolute;
     z-index: -1;
@@ -378,3 +471,7 @@ a, button {
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out; }
+
+/* line 385, app.scss */
+label {
+  font-weight: normal; }
