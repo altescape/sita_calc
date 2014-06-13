@@ -33,10 +33,19 @@
       templateUrl : "main-nav.html",
       controller  : function ($localStorage) {
 
+        this.settings = {
+          disable: 'right',
+          hyperextensible: false,
+          transitionSpeed: 0.3,
+          easing: 'ease'
+        }
+
         // Init snap
         this.snapper = new Snap({
           element: document.getElementById('content')
         });
+
+        this.snapper.settings(this.settings);
 
         // Open left draw (snap)
         this.openLeft = function () {
@@ -174,17 +183,34 @@
 
     }]);
 
+  app.controller('RiCtrl', ['$route', '$routeParams', '$location', '$localStorage',
+    function($route, $routeParams, $location, $localStorage) {
+      this.$route = $route;
+      this.$location = $location;
+      this.$routeParams = $routeParams;
+
+      this.calculations = {};
+
+      this.setInput = function (input) {
+        $localStorage.ri_airline_revenue = input.ri_airline_revenue;
+      };
+
+    }]);
+
   app.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
-      $routeProvider
-          .when('/user', {
+      $routeProvider.
+          when('/user', {
             templateUrl: 'in-user.html',
             controller : 'UserCtrl'
-          })
-          .when('/calculator', {
+          }).
+          when('/calculator', {
             templateUrl: 'in-revenue-integrity.html',
-            controller : 'UserCtrl'
-          })
+            controller : 'RiCtrl'
+          }).
+          otherwise({
+            redirectTo: '/calculator'
+          });
     }
   ]);
 

@@ -16,7 +16,7 @@ html, body {
   -o-background-size: cover;
   background-size: cover;
 }
-a {
+a, button {
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
@@ -256,14 +256,14 @@ $input-group-fontsize: $input-group-height/2.2;
     position: absolute;
     height: $input-group-height;
     line-height: $input-group-height;
-    right: 15px;
+    right: 0;
     top: 0;
     margin: 0;
     padding: 0;
     background-color: $button-colour;
     color: white;
     border: none;
-    width: 30%;
+    width: 33%;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 0 5px 5px 0;
@@ -273,6 +273,43 @@ $input-group-fontsize: $input-group-height/2.2;
       color: lighten($button-colour, 60%);
       cursor: pointer;
     }
+  }
+}
+.postfix-choice, .input-choices-group {
+    height: $input-group-height * 1.2;
+  .choice-left, .choice-right {
+    height: $input-group-height * 1.2;
+    line-height: $input-group-height * 1.2;
+    margin: 0;
+    padding: 0;
+    background-color: $button-colour;
+    color: white;
+    border: none;
+    width: 118px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    &.active {
+      background-color: darken($button-colour, 10%) !important;
+      color: yellowgreen !important;
+    }
+    .glyphicon {font-weight: normal}
+    &:hover {
+      background-color: darken($button-colour, 10%);
+      color: lighten($button-colour, 60%);
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .choice-left {
+    right: auto;
+    left: 15px;
+  }
+  input.radio:empty {
+    margin-left: -999px !important;
+    visibility: hidden;
   }
 }
 
