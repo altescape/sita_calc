@@ -1,67 +1,71 @@
-<div class="col-md-3 col-md-offset-1 text-left" ng-controller="RiCtrl as ri">
+<div class="col-md-7 col-md-push-5">
+    <highchart config="user.chartConfig" style="height: 600px"></highchart>
+</div>
+<div class="col-md-3 col-md-pull-7 col-md-offset-1 text-left" ng-controller="RiCtrl as ri">
+    <form name="calculations" novalidate>
+        <header class="row">
+            <h1>{{ ri.title }}</h1>
+        </header>
 
-    <header class="row">
-        <h1>{{ ri.title }}</h1>
-    </header>
-
-    <div class="row clearfix mb-30">
-        <h4 class="mb-10">Current total passengers boarded per year</h4>
-        <input ng-model="ri.total_passengers" ng-change="ri.setInput(ri)"
-               class="form-control input-lg input-xlg" placeholder="Enter number" type="number" required>
-    </div>
-
-    <div class="row clearfix mb-30">
-        <h4 class="mb-10">Expected passenger growth per year - for the next 5 years</h4>
-
-        <div class="postfix-label mt-10 input-widths-tiny">
-            <input ng-model="ri.passenger_growth" ng-change="ri.setInput(ri)"
-                   class="form-control input-lg input-xlg" type="number" required>
-            <label class="label">%</label>
+        <div class="row clearfix mb-30">
+            <h4 class="mb-10">Current total passengers boarded per year</h4>
+            <input ng-model="ri.total_passengers" ng-change="ri.setInput(ri)"
+                   class="form-control input-lg input-xlg" placeholder="Enter number" type="number" required>
         </div>
-    </div>
 
-    <div class="row clearfix mb-30">
-        <h4 class="mb-10">Number of tickets issued per year</h4>
-        <input ng-model="ri.tickets_issued" ng-change="ri.setInput(ri)"
-               class="form-control input-lg input-xlg" placeholder="Enter number" type="number" required>
-    </div>
+        <div class="row clearfix mb-30">
+            <h4 class="mb-10">Expected passenger growth per year - for the next 5 years</h4>
 
-    <div class="row clearfix mb-30">
-        <h4 class="mb-10">Percentage of tickets reissued</h4>
-
-        <div class="postfix-label mt-10 input-widths-tiny">
-            <input ng-model="ri.tickets_reissued" ng-change="ri.setInput(ri)"
-                   class="form-control input-lg input-xlg" type="number" required>
-            <label class="label">%</label>
-        </div>
-    </div>
-
-    <div class="row clearfix mb-30">
-        <h4 class="mb-10">Hourly labour costs</h4>
-
-        <div class="postfix-label mt-10 input-widths-tiny">
-            <input ng-model="ri.labour_cost" ng-change="ri.setInput(ri)"
-                   class="form-control input-lg input-xlg" type="number" required>
-            <label class="label">$</label>
-        </div>
-    </div>
-
-    <div class="row clearfix postfix-choice mb-30">
-        <h4>REVENUE INTEGRITY</h4>
-
-        <div class="row">
-            <div class="col-md-3">
-                <input id="option1yes" type="radio" required ng-model="ri.option1" ng-change="ri.setInput(ri)" ng-value="5"
-                       class="radio">
-                <label for="option1yes" class="input-lg choice-left text-center" ng-class="{'active':ri.option1==5}"><span
-                      class="glyphicon glyphicon-ok"></span></label>
-            </div>
-            <div class="col-md-3">
-                <input id="option1no" type="radio" required ng-model="ri.option1" ng-change="ri.setInput(ri)" ng-value="0"
-                       class="radio">
-                <label for="option1no" class="input-lg choice-right text-center" ng-class="{'active':ri.option1==0}"><span
-                      class="glyphicon glyphicon-remove"></span></label>
+            <div class="postfix-label mt-10 input-widths-tiny">
+                <input ng-model="ri.passenger_growth" ng-change="ri.setInput(ri)"
+                       class="form-control input-lg input-xlg" type="number" required>
+                <label class="label">%</label>
             </div>
         </div>
-    </div>
+
+        <div class="row clearfix mb-30">
+            <h4 class="mb-10">Number of tickets issued per year</h4>
+            <input ng-model="ri.tickets_issued" ng-change="ri.setInput(ri)"
+                   class="form-control input-lg input-xlg" placeholder="Enter number" type="number" required>
+        </div>
+
+        <div class="row clearfix mb-30">
+            <h4 class="mb-10">Percentage of tickets reissued</h4>
+
+            <div class="postfix-label mt-10 input-widths-tiny">
+                <input ng-model="ri.tickets_reissued" ng-change="ri.setInput(ri)"
+                       class="form-control input-lg input-xlg" type="number" required>
+                <label class="label">%</label>
+            </div>
+        </div>
+
+        <div class="row clearfix mb-30">
+            <h4 class="mb-10">Hourly labour costs</h4>
+
+            <div class="prefix-label mt-10 input-widths-tiny">
+                <input ng-model="ri.labour_cost" ng-change="ri.setInput(ri)"
+                       class="form-control input-lg input-xlg" type="number" required>
+                <label class="label">$</label>
+            </div>
+        </div>
+
+        <div class="row clearfix postfix-choice mb-30">
+            <h4>REVENUE INTEGRITY</h4>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <input id="option1yes" type="radio" required ng-model="ri.option1" ng-change="ri.setInput(ri)" ng-value="5"
+                           class="radio">
+                    <label for="option1yes" class="input-lg choice-left text-center" ng-class="{'active':ri.option1==5}"><span
+                          class="glyphicon glyphicon-ok"></span></label>
+                </div>
+                <div class="col-md-3">
+                    <input id="option1no" type="radio" required ng-model="ri.option1" ng-change="ri.setInput(ri)" ng-value="0"
+                           class="radio">
+                    <label for="option1no" class="input-lg choice-right text-center" ng-class="{'active':ri.option1==0}"><span
+                          class="glyphicon glyphicon-remove"></span></label>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

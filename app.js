@@ -6,7 +6,7 @@
 
 (function () {
 
-  var app = angular.module('hozCalc', ['ngStorage', 'ngRoute']);
+  var app = angular.module('hozCalc', ['ngStorage', 'ngRoute', 'highcharts-ng']);
 
   app.controller('CalcController', function () {
 
@@ -124,58 +124,17 @@
     };
   });
 
-//  app.directive("inUser", function () {
-//    return {
-//      restrict    : "E",
-//      templateUrl : "in-user.html",
-//      controller  : function ($localStorage) {
-//
-//        this.username = $localStorage.username;
-//        this.session_name = $localStorage.session_name;
-//
-//        this.setInput = function (information) {
-//
-//          this.username = information.username;
-//          this.session_name = information.session_name;
-//
-//          $localStorage.username = information.username;
-//          $localStorage.session_name = information.session_name;
-//        };
-//      },
-//      controllerAs: "user"
-//    }
-//  });
-
-//  app.directive("inRevenueIntegrity", function () {
-//    return {
-//      restrict    : "E",
-//      templateUrl : "in-revenue-integrity.html",
-//      controller  : function ($localStorage) {
-//
-//        this.calculations = {};
-//        this.ri_airline_revenue = $localStorage.ri_airline_revenue;
-//        this.option1 = $localStorage.option1;
-//
-//        this.setInput = function (input) {
-//
-//          this.ri_airline_revenue = input.ri_airline_revenue;
-//          this.option1 = input.option1;
-//
-//          $localStorage.ri_airline_revenue = input.ri_airline_revenue;
-//        };
-//
-//      },
-//      controllerAs: "ri"
-//    }
-//  });
-
   app.factory('Data', ['$localStorage',
     function ($localStorage) {
       return {
-        username: $localStorage.username,
-        session_name : $localStorage.session_name,
-        ri_airline_revenue : $localStorage.ri_airline_revenue,
-        option1 : $localStorage.option1
+        username        : $localStorage.username,
+        session_name    : $localStorage.session_name,
+        total_passengers: $localStorage.total_passengers,
+        passenger_growth: $localStorage.passenger_growth,
+        tickets_issued  : $localStorage.tickets_issued,
+        tickets_reissued: $localStorage.tickets_reissued,
+        labour_cost     : $localStorage.labour_cost,
+        option1         : $localStorage.option1
       }
     }]);
 
@@ -210,6 +169,91 @@
         console.log(this.data);
       };
 
+      /* Highcharts */
+      this.chartConfig = {
+        options: {
+          chart: {
+            type    : 'pie',
+            options3d: {
+              enabled: true,
+              alpha: 15,
+              beta: 0
+            },
+            backgroundColor: 'rgba(255, 255, 255, 0)',
+            plotBackgroundColor: 'rgba(255, 255, 255, 0)'
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions : {
+            series: {
+              tooltip: {
+                followPointer :false
+              },
+              animation : true
+            },
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              depth: 35,
+              borderColor: 'rgba(255, 255, 255, 0)',
+              dataLabels: {
+                enabled: true,
+                distance: -50,
+                style: {
+                  fontWeight: 'bold',
+                  color: 'white',
+                  textShadow: '0px 1px 2px black'
+                }
+              },
+              startAngle: -90,
+              endAngle: 90,
+              center: ['50%', '75%']
+            }
+          }
+        },
+        series : [
+          {
+            name: 'Browser share',
+            innerSize: '50%',
+            data: [
+              ['Firefox',   45.0],
+              ['IE',       26.8],
+              {
+                name: 'Chrome',
+                y: 12.8,
+                sliced: true,
+                selected: true
+              },
+              ['Safari',    8.5],
+              ['Opera',     6.2],
+              ['Others',   0.7]
+            ]
+          }
+        ],
+        exporting: {
+          buttons: {
+            contextButton: {
+              symbol: 'square',
+              symbolStrokeWidth: 1,
+              symbolFill: 'rgba(255,255,255,0.2)',
+              symbolStroke: 'rgba(255,255,255,0.4)'
+            }
+          }
+        },
+        title: {
+          text: 'Browser<br>shares',
+          style : {
+            'color': 'white'
+          },
+          align: 'center',
+          verticalAlign: 'middle',
+          y: 100
+        },
+        xAxis  : {currentMin: 0, currentMax: 10, minRange: 1},
+        loading: false
+      };
+
     }]);
 
   app.controller('RiCtrl', ['$route', '$routeParams', '$location', '$localStorage', 'Data',
@@ -228,18 +272,30 @@
       this.data = Data;
 
       /* For output */
-      this.ri_airline_revenue = this.data.ri_airline_revenue;
+      this.total_passengers = this.data.total_passengers;
+      this.passenger_growth = this.data.passenger_growth;
+      this.tickets_issued = this.data.tickets_issued;
+      this.tickets_reissued = this.data.tickets_reissued;
+      this.labour_cost = this.data.labour_cost;
       this.option1 = this.data.option1;
 
       /* Set input */
       this.setInput = function (input) {
 
         /* Save to data factory */
-        this.data.ri_airline_revenue = input.ri_airline_revenue;
+        this.data.total_passengers = input.total_passengers;
+        this.data.passenger_growth = input.passenger_growth;
+        this.data.tickets_issued = input.tickets_issued;
+        this.data.tickets_reissued = input.tickets_reissued;
+        this.data.labour_cost = input.labour_cost;
         this.data.option1 = input.option1;
 
         /* Save to local storage */
-        $localStorage.ri_airline_revenue = input.ri_airline_revenue;
+        $localStorage.total_passengers = input.total_passengers;
+        $localStorage.passenger_growth = input.passenger_growth;
+        $localStorage.tickets_issued = input.tickets_issued;
+        $localStorage.tickets_reissued = input.tickets_reissued;
+        $localStorage.labour_cost = input.labour_cost;
         $localStorage.option1 = input.option1;
 
         console.log(this.data);

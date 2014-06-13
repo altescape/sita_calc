@@ -276,13 +276,13 @@ $input-group-fontsize: $input-group-height/2.2;
     }
   }
 }
-.postfix-label {
+.postfix-label, .prefix-label {
   position: relative;
   height: $input-group-height;
   overflow: hidden;
   margin-bottom: 10px;
   .form-control {
-    position: relative;
+    position: absolute;
     z-index: 2;
     width: 70%;
     @extend .input-xlg;
@@ -298,14 +298,26 @@ $input-group-fontsize: $input-group-height/2.2;
     top: 0;
     margin: 0;
     padding: 0;
-    background-color: $label-color;
-    color: darken($label-color, 25%);
+    background-color: rgba($label-color, 0.3);
+    color: white;
     border: none;
     width: 33%;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 24px;
     border-radius: 0 5px 5px 0;
     .glyphicon {font-weight: normal}
+  }
+}
+.prefix-label {
+  .form-control {
+    right: 0;
+    border-radius: 0 5px 5px 0;
+  }
+  .label {
+    right: auto;
+    left: 0;
+    border-radius: 5px 0 0 5px;
   }
 }
 .postfix-choice, .input-choices-group {

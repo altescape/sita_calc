@@ -26,6 +26,7 @@
     "offlinejs-simulate-ui": "~0.1.2",
     "bootstrap": "~3.1.1",
     "jquery": "~2.1.1",
-    "offline": "~0.7.3"
+    "offline": "~0.7.3",
+    "highcharts-ng": "~0.0.6"
   }
 }
