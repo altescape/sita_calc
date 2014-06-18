@@ -127,14 +127,23 @@
   app.factory('Data', ['$localStorage',
     function ($localStorage) {
       return {
-        username        : $localStorage.username,
-        session_name    : $localStorage.session_name,
-        total_passengers: $localStorage.total_passengers,
-        passenger_growth: $localStorage.passenger_growth,
-        tickets_issued  : $localStorage.tickets_issued,
-        tickets_reissued: $localStorage.tickets_reissued,
-        labour_cost     : $localStorage.labour_cost,
-        option1         : $localStorage.option1
+        username                         : $localStorage.username,
+        session_name                     : $localStorage.session_name,
+        total_passengers                 : $localStorage.total_passengers,
+        passenger_growth                 : $localStorage.passenger_growth,
+        tickets_issued_perc              : $localStorage.tickets_issued_perc,
+        tickets_issued                   : $localStorage.tickets_issued,
+        tickets_reissued                 : $localStorage.tickets_reissued,
+        labour_cost                      : $localStorage.labour_cost,
+        service_revenue_integrity        : $localStorage.service_revenue_integrity,
+        service_revenue_integrity_process: $localStorage.service_revenue_integrity_process,
+        service_channel_shift            : $localStorage.service_channel_shift,
+        service_ancillary_sales          : $localStorage.service_ancillary_sales,
+        service_weight_balance           : $localStorage.service_weight_balance,
+        service_o_and_d                  : $localStorage.service_o_and_d,
+        service_pos_controls             : $localStorage.service_pos_controls,
+        service_reprice_reissue          : $localStorage.service_reprice_reissue,
+        service_airfare_insight          : $localStorage.service_airfare_insight
       }
     }]);
 
@@ -171,95 +180,90 @@
 
       /* Highcharts */
       this.chartConfig = {
-        options: {
-          chart: {
-            type    : 'pie',
-            options3d: {
-              enabled: true,
-              alpha: 15,
-              beta: 0
-            },
-            backgroundColor: 'rgba(255, 255, 255, 0)',
+        options  : {
+          chart      : {
+            type               : 'pie',
+            backgroundColor    : 'rgba(255, 255, 255, 0)',
             plotBackgroundColor: 'rgba(255, 255, 255, 0)'
           },
-          tooltip: {
+          tooltip    : {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
           },
-          plotOptions : {
+          plotOptions: {
             series: {
-              tooltip: {
-                followPointer :false
+              tooltip  : {
+                followPointer: false
               },
-              animation : true
+              animation: true
             },
-            pie: {
+            pie   : {
               allowPointSelect: true,
-              cursor: 'pointer',
-              depth: 35,
-              borderColor: 'rgba(255, 255, 255, 0)',
-              dataLabels: {
-                enabled: true,
+              cursor          : 'pointer',
+              depth           : 35,
+              borderColor     : 'rgba(255, 255, 255, 0)',
+              dataLabels      : {
+                enabled : true,
                 distance: -50,
-                style: {
+                style   : {
                   fontWeight: 'bold',
-                  color: 'white',
+                  color     : 'white',
                   textShadow: '0px 1px 2px black'
                 }
               },
-              startAngle: -90,
-              endAngle: 90,
-              center: ['50%', '75%']
+              startAngle      : -90,
+              endAngle        : 90,
+              center          : ['50%', '75%']
             }
           }
         },
-        series : [
+        series   : [
           {
-            name: 'Browser share',
+            name     : 'Browser share',
             innerSize: '50%',
-            data: [
-              ['Firefox',   45.0],
-              ['IE',       26.8],
+            data     : [
+              ['Firefox', 45.0],
+              ['IE', 26.8],
               {
-                name: 'Chrome',
-                y: 12.8,
-                sliced: true,
+                name    : 'Chrome',
+                y       : 12.8,
+                sliced  : true,
                 selected: true
               },
-              ['Safari',    8.5],
-              ['Opera',     6.2],
-              ['Others',   0.7]
+              ['Safari', 8.5],
+              ['Opera', 6.2],
+              ['Others', 0.7]
             ]
           }
         ],
         exporting: {
           buttons: {
             contextButton: {
-              symbol: 'square',
+              symbol           : 'square',
               symbolStrokeWidth: 1,
-              symbolFill: 'rgba(255,255,255,0.2)',
-              symbolStroke: 'rgba(255,255,255,0.4)'
+              symbolFill       : 'rgba(255,255,255,0.2)',
+              symbolStroke     : 'rgba(255,255,255,0.4)'
             }
           }
         },
-        title: {
-          text: 'Browser<br>shares',
-          style : {
+        title    : {
+          text         : 'Browser<br>shares',
+          style        : {
             'color': 'white'
           },
-          align: 'center',
+          align        : 'center',
           verticalAlign: 'middle',
-          y: 100
+          y            : 100
         },
-        xAxis  : {currentMin: 0, currentMax: 10, minRange: 1},
-        loading: false
+        xAxis    : {currentMin: 0, currentMax: 10, minRange: 1},
+        loading  : false
       };
 
     }]);
 
-  app.controller('RiCtrl', ['$route', '$routeParams', '$location', '$localStorage', 'Data',
+  app.controller('CalCtrl', ['$route', '$routeParams', '$location', '$localStorage', 'Data',
     function ($route, $routeParams, $location, $localStorage, Data) {
 
-      this.title = "Service";
+      this.title = "Horizon Value Proposition Calculator";
 
       /* Route variables */
       this.$route = $route;
@@ -274,10 +278,20 @@
       /* For output */
       this.total_passengers = this.data.total_passengers;
       this.passenger_growth = this.data.passenger_growth;
+      this.tickets_issued_perc = this.data.tickets_issued_perc;
       this.tickets_issued = this.data.tickets_issued;
       this.tickets_reissued = this.data.tickets_reissued;
       this.labour_cost = this.data.labour_cost;
-      this.option1 = this.data.option1;
+
+      this.service_revenue_integrity = this.data.service_revenue_integrity;
+      this.service_revenue_integrity_process = this.data.service_revenue_integrity_process;
+      this.service_channel_shift = this.data.service_channel_shift;
+      this.service_ancillary_sales = this.data.service_ancillary_sales;
+      this.service_weight_balance = this.data.service_weight_balance;
+      this.service_o_and_d = this.data.service_o_and_d;
+      this.service_pos_controls = this.data.service_pos_controls;
+      this.service_reprice_reissue = this.data.service_reprice_reissue;
+      this.service_airfare_insight = this.data.service_airfare_insight;
 
       /* Set input */
       this.setInput = function (input) {
@@ -285,18 +299,39 @@
         /* Save to data factory */
         this.data.total_passengers = input.total_passengers;
         this.data.passenger_growth = input.passenger_growth;
+        this.data.tickets_issued_perc = input.tickets_issued_perc;
         this.data.tickets_issued = input.tickets_issued;
         this.data.tickets_reissued = input.tickets_reissued;
         this.data.labour_cost = input.labour_cost;
-        this.data.option1 = input.option1;
+        this.data.service_revenue_integrity = input.service_revenue_integrity;
+        this.data.service_revenue_integrity_process = input.service_revenue_integrity_process;
+        this.data.service_channel_shift = input.service_channel_shift;
+        this.data.service_ancillary_sales = input.service_ancillary_sales;
+        this.data.service_weight_balance = input.service_weight_balance;
+        this.data.service_o_and_d = input.service_o_and_d;
+        this.data.service_pos_controls = input.service_pos_controls;
+        this.data.service_reprice_reissue = input.service_reprice_reissue;
+        this.data.service_airfare_insight = input.service_airfare_insight;
+
+        // Change inputs on the fly
+        this.tickets_issued = Math.round(input.total_passengers / input.tickets_issued_perc);
 
         /* Save to local storage */
         $localStorage.total_passengers = input.total_passengers;
         $localStorage.passenger_growth = input.passenger_growth;
+        $localStorage.tickets_issued_perc = input.tickets_issued_perc;
         $localStorage.tickets_issued = input.tickets_issued;
         $localStorage.tickets_reissued = input.tickets_reissued;
         $localStorage.labour_cost = input.labour_cost;
-        $localStorage.option1 = input.option1;
+        $localStorage.service_revenue_integrity = input.service_revenue_integrity;
+        $localStorage.service_revenue_integrity_process = input.service_revenue_integrity_process;
+        $localStorage.service_channel_shift = input.service_channel_shift;
+        $localStorage.service_ancillary_sales = input.service_ancillary_sales;
+        $localStorage.service_weight_balance = input.service_weight_balance;
+        $localStorage.service_o_and_d = input.service_o_and_d;
+        $localStorage.service_pos_controls = input.service_pos_controls;
+        $localStorage.service_reprice_reissue = input.service_reprice_reissue;
+        $localStorage.service_airfare_insight = input.service_airfare_insight;
 
         console.log(this.data);
       };
@@ -312,7 +347,7 @@
           }).
           when('/calculator', {
             templateUrl: 'calculator.html',
-            controller : 'RiCtrl'
+            controller : 'CalCtrl'
           }).
           otherwise({
             redirectTo: '/calculator'

@@ -37,6 +37,7 @@ a, button {
   color: white;
   a, p, li, h1, h2, h3, h4, h5, h6 {color: white;}
 }
+.op-5 {opacity: 0.5}
 
 .offline, .online {}
 
@@ -276,26 +277,26 @@ $input-group-fontsize: $input-group-height/2.2;
     }
   }
 }
+.form-input {
+  color: #555;
+  background-color: white;
+  background-image: none;
+}
 .postfix-label, .prefix-label {
   position: relative;
   height: $input-group-height;
   overflow: hidden;
   margin-bottom: 10px;
-  .form-control {
-    position: absolute;
+  .form-input {
     z-index: 2;
-    width: 70%;
     @extend .input-xlg;
     border-radius: 5px 0 0 5px;
   }
   .label {
     $label-color: #CCC;
     z-index: 1;
-    position: absolute;
     height: $input-group-height;
     line-height: $input-group-height;
-    right: 0;
-    top: 0;
     margin: 0;
     padding: 0;
     background-color: rgba($label-color, 0.3);
@@ -310,27 +311,24 @@ $input-group-fontsize: $input-group-height/2.2;
   }
 }
 .prefix-label {
-  .form-control {
-    right: 0;
+  .form-input {
     border-radius: 0 5px 5px 0;
   }
   .label {
-    right: auto;
-    left: 0;
     border-radius: 5px 0 0 5px;
   }
 }
 .postfix-choice, .input-choices-group {
-    height: $input-group-height * 1.2;
-  .choice-left, .choice-right {
-    height: $input-group-height * 1.2;
-    line-height: $input-group-height * 1.2;
+    height: $input-group-height;
+  .choice {
+    height: $input-group-height;
+    line-height: $input-group-height;
     margin: 0;
     padding: 0;
     background-color: $button-colour;
     color: white;
     border: none;
-    width: 118px;
+    width: 100%;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 5px;
@@ -347,10 +345,6 @@ $input-group-fontsize: $input-group-height/2.2;
     &:focus {
       outline: none;
     }
-  }
-  .choice-left {
-    right: auto;
-    left: 15px;
   }
   input.radio:empty {
     margin: 0 !important;
@@ -376,7 +370,7 @@ $input-group-fontsize: $input-group-height/2.2;
     background-color: rgba(0,0,0,0.7);
   }
 }
-
+.position-fixed {position: fixed}
 .question-progress {
   background-color: transparent;
   position: relative;
