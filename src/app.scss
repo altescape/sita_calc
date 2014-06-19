@@ -86,7 +86,7 @@ $class-slug: mt;
   bottom: 0;
   left: auto;
   width: 265px;
-  height: auto;
+  height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-transition: width 0.3s ease;
@@ -121,6 +121,7 @@ $class-slug: mt;
 }
 
 .ninja {visibility: hidden}
+.ghost {display: none;}
 
 // Menu
 
@@ -209,7 +210,7 @@ $class-slug: mt;
 }
 
 #footbar {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.85);
   height: 50px;
   line-height: 50px;
   white-space: nowrap;
@@ -217,6 +218,7 @@ $class-slug: mt;
   bottom: 0;
   left: 15px;
   right: 15px;
+  z-index: 99;
   a:hover {
     text-decoration: none;
   }
@@ -233,6 +235,10 @@ $class-slug: mt;
 
 $input-group-height: 36px;
 $input-group-fontsize: $input-group-height/2.2;
+.form-control-no-border {
+  border: none;
+  &:focus {outline: none}
+}
 .input-xlg {
   height: $input-group-height * 1.7 !important;
   font-size: $input-group-fontsize * 1.7 !important;
@@ -242,6 +248,26 @@ $input-group-fontsize: $input-group-height/2.2;
     outline: none;
   }
 }
+a.user-action {
+  transition: all 0.2s ease-in-out;
+  .txt {
+    display: inline;
+  }
+  .glyphicon {
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+a.user-action.disabled, a.user-action[disabled] {
+  opacity: .2;
+  .txt {
+    display: none;
+  }
+  .glyphicon {
+    transform: rotate(180deg);
+  }
+}
 .postfix-action {
   position: relative;
   height: $input-group-height;
@@ -249,7 +275,7 @@ $input-group-fontsize: $input-group-height/2.2;
   margin-bottom: 10px;
   .form-control {
     width: 70%;
-    @extend .input-xlg;
+    @extend .form-control-no-border;
   }
   .btn {
     position: absolute;
@@ -297,9 +323,8 @@ $input-group-fontsize: $input-group-height/2.2;
   overflow: hidden;
   .form-input {
     z-index: 2;
-    @extend .input-xlg;
+    @extend .form-control-no-border;
     border-radius: 5px 0 0 5px;
-    width: inherit;
   }
   .label {
     $label-color: #CCC;

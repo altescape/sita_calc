@@ -166,7 +166,7 @@ a, button {
   bottom: 0;
   left: auto;
   width: 265px;
-  height: auto;
+  height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-transition: width 0.3s ease;
@@ -207,22 +207,26 @@ a, button {
 .ninja {
   visibility: hidden; }
 
-/* line 127, app.scss */
+/* line 124, app.scss */
+.ghost {
+  display: none; }
+
+/* line 128, app.scss */
 .main-nav {
   padding-top: 15px;
   padding-bottom: 15px; }
 
-/* line 132, app.scss */
+/* line 133, app.scss */
 .open-left {
   display: block;
   width: 36px;
   height: 36px;
   position: relative;
   float: left; }
-  /* line 138, app.scss */
+  /* line 139, app.scss */
   .open-left:hover {
     cursor: pointer; }
-  /* line 139, app.scss */
+  /* line 140, app.scss */
   .open-left span {
     background-color: white;
     display: block;
@@ -237,22 +241,22 @@ a, button {
     transform-origin: 4px;
     -webkit-transform-origin: 4px;
     -moz-transform-origin: 4px; }
-    /* line 153, app.scss */
+    /* line 154, app.scss */
     .open-left span:nth-child(2) {
       top: 15px; }
-    /* line 156, app.scss */
+    /* line 157, app.scss */
     .open-left span:last-child {
       top: 25px; }
 
-/* line 164, app.scss */
+/* line 165, app.scss */
 .snapjs-left .open-left span:first-child {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg); }
-/* line 169, app.scss */
+/* line 170, app.scss */
 .snapjs-left .open-left span:nth-child(2) {
   opacity: 0; }
-/* line 172, app.scss */
+/* line 173, app.scss */
 .snapjs-left .open-left span:last-child {
   transform-origin: 18px -3px;
   -webkit-transform-origin: 18px -3px;
@@ -262,28 +266,28 @@ a, button {
   -moz-transform: rotate(-225deg);
   -o-transform: rotate(-225deg); }
 
-/* line 186, app.scss */
+/* line 187, app.scss */
 .side-nav li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1.8em 0;
   font-size: 12px; }
-  /* line 190, app.scss */
+  /* line 191, app.scss */
   .side-nav li:first-child {
     padding-top: 0.5em; }
-  /* line 191, app.scss */
+  /* line 192, app.scss */
   .side-nav li:last-child {
     border: none; }
-  /* line 192, app.scss */
+  /* line 193, app.scss */
   .side-nav li a {
     opacity: 0.7; }
-    /* line 194, app.scss */
+    /* line 195, app.scss */
     .side-nav li a:hover {
       opacity: 1;
       text-decoration: none; }
-      /* line 197, app.scss */
+      /* line 198, app.scss */
       .side-nav li a:hover img {
         opacity: 1; }
-    /* line 199, app.scss */
+    /* line 200, app.scss */
     .side-nav li a img {
       opacity: .5;
       margin-right: 1em;
@@ -292,49 +296,79 @@ a, button {
       -moz-transition: all 0.4s ease-in-out;
       transition: all 0.4s ease-in-out; }
 
-/* line 211, app.scss */
+/* line 212, app.scss */
 #footbar {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.85);
   height: 50px;
   line-height: 50px;
   white-space: nowrap;
   position: fixed;
   bottom: 0;
   left: 15px;
-  right: 15px; }
-  /* line 220, app.scss */
+  right: 15px;
+  z-index: 99; }
+  /* line 222, app.scss */
   #footbar a:hover {
     text-decoration: none; }
 
-/* line 225, app.scss */
+/* line 227, app.scss */
 .panel.see-thro {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.1);
   padding: 4em; }
-  /* line 229, app.scss */
+  /* line 231, app.scss */
   .panel.see-thro h1 {
     margin: 0 0 1.5em 0; }
 
-/* line 236, app.scss */
-.input-xlg, .postfix-action .form-control, .postfix-label .form-input, .prefix-label .form-input {
+/* line 238, app.scss */
+.form-control-no-border, .postfix-action .form-control, .postfix-label .form-input, .prefix-label .form-input {
+  border: none; }
+  /* line 240, app.scss */
+  .form-control-no-border:focus, .postfix-action .form-control:focus, .postfix-label .form-input:focus, .prefix-label .form-input:focus {
+    outline: none; }
+
+/* line 242, app.scss */
+.input-xlg {
   height: 61.2px !important;
   font-size: 27.81818px !important;
   line-height: 61.2px !important;
   border: none; }
-  /* line 241, app.scss */
-  .input-xlg:focus, .postfix-action .form-control:focus, .postfix-label .form-input:focus, .prefix-label .form-input:focus {
+  /* line 247, app.scss */
+  .input-xlg:focus {
     outline: none; }
 
-/* line 245, app.scss */
+/* line 251, app.scss */
+a.user-action {
+  transition: all 0.2s ease-in-out; }
+  /* line 253, app.scss */
+  a.user-action .txt {
+    display: inline; }
+  /* line 256, app.scss */
+  a.user-action .glyphicon {
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+    transform: rotate(0deg); }
+
+/* line 262, app.scss */
+a.user-action.disabled, a.user-action[disabled] {
+  opacity: .2; }
+  /* line 264, app.scss */
+  a.user-action.disabled .txt, a.user-action[disabled] .txt {
+    display: none; }
+  /* line 267, app.scss */
+  a.user-action.disabled .glyphicon, a.user-action[disabled] .glyphicon {
+    transform: rotate(180deg); }
+
+/* line 271, app.scss */
 .postfix-action {
   position: relative;
   height: 36px;
   overflow: hidden;
   margin-bottom: 10px; }
-  /* line 250, app.scss */
+  /* line 276, app.scss */
   .postfix-action .form-control {
     width: 70%; }
-  /* line 254, app.scss */
+  /* line 280, app.scss */
   .postfix-action .btn {
     position: absolute;
     height: 36px;
@@ -350,22 +384,22 @@ a, button {
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 0 5px 5px 0; }
-    /* line 269, app.scss */
+    /* line 295, app.scss */
     .postfix-action .btn .glyphicon {
       font-weight: normal; }
-    /* line 270, app.scss */
+    /* line 296, app.scss */
     .postfix-action .btn:hover {
       background-color: #300302;
       color: #fb9f9c;
       cursor: pointer; }
 
-/* line 277, app.scss */
+/* line 303, app.scss */
 .input-group {
   width: 100%;
   overflow: hidden;
   margin-bottom: 10px; }
 
-/* line 282, app.scss */
+/* line 308, app.scss */
 .form-input {
   height: 36px;
   font-size: 16.36364px;
@@ -378,17 +412,16 @@ a, button {
   border-radius: 5px;
   border: none; }
 
-/* line 294, app.scss */
+/* line 320, app.scss */
 .postfix-label, .prefix-label {
   position: relative;
   height: 36px;
   overflow: hidden; }
-  /* line 298, app.scss */
+  /* line 324, app.scss */
   .postfix-label .form-input, .prefix-label .form-input {
     z-index: 2;
-    border-radius: 5px 0 0 5px;
-    width: inherit; }
-  /* line 304, app.scss */
+    border-radius: 5px 0 0 5px; }
+  /* line 329, app.scss */
   .postfix-label .label, .prefix-label .label {
     z-index: 1;
     height: 36px;
@@ -402,21 +435,21 @@ a, button {
     font-weight: normal;
     font-size: 15px;
     border-radius: 0 5px 5px 0; }
-    /* line 318, app.scss */
+    /* line 343, app.scss */
     .postfix-label .label .glyphicon, .prefix-label .label .glyphicon {
       font-weight: normal; }
 
-/* line 322, app.scss */
+/* line 347, app.scss */
 .prefix-label .form-input {
   border-radius: 0 5px 5px 0; }
-/* line 325, app.scss */
+/* line 350, app.scss */
 .prefix-label .label {
   border-radius: 5px 0 0 5px; }
 
-/* line 329, app.scss */
+/* line 354, app.scss */
 .postfix-choice, .input-choices-group {
   height: 36px; }
-  /* line 331, app.scss */
+  /* line 356, app.scss */
   .postfix-choice .choice, .input-choices-group .choice {
     height: 36px;
     line-height: 36px;
@@ -429,22 +462,22 @@ a, button {
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 5px; }
-    /* line 343, app.scss */
+    /* line 368, app.scss */
     .postfix-choice .choice.active, .input-choices-group .choice.active {
       background-color: #300302 !important;
       color: yellowgreen !important; }
-    /* line 347, app.scss */
+    /* line 372, app.scss */
     .postfix-choice .choice .glyphicon, .input-choices-group .choice .glyphicon {
       font-weight: normal; }
-    /* line 348, app.scss */
+    /* line 373, app.scss */
     .postfix-choice .choice:hover, .input-choices-group .choice:hover {
       background-color: #300302;
       color: #fb9f9c;
       cursor: pointer; }
-    /* line 353, app.scss */
+    /* line 378, app.scss */
     .postfix-choice .choice:focus, .input-choices-group .choice:focus {
       outline: none; }
-  /* line 357, app.scss */
+  /* line 382, app.scss */
   .postfix-choice input.radio:empty, .input-choices-group input.radio:empty {
     margin: 0 !important;
     margin-left: -999px !important;
@@ -452,36 +485,36 @@ a, button {
     height: 0 !important;
     padding: 0 !important; }
 
-/* line 365, app.scss */
+/* line 390, app.scss */
 .input-widths-small {
   width: 50%; }
 
-/* line 368, app.scss */
+/* line 393, app.scss */
 .input-widths-tiny {
   width: 30%; }
 
-/* line 371, app.scss */
+/* line 396, app.scss */
 .col-no-padding {
   padding: 0; }
 
-/* line 373, app.scss */
+/* line 398, app.scss */
 .pager-nav {
   display: block;
   background-color: rgba(0, 0, 0, 0.3);
   text-align: center; }
-  /* line 377, app.scss */
+  /* line 402, app.scss */
   .pager-nav:hover {
     background-color: rgba(0, 0, 0, 0.7); }
 
-/* line 381, app.scss */
+/* line 406, app.scss */
 .position-fixed {
   position: fixed; }
 
-/* line 382, app.scss */
+/* line 407, app.scss */
 .question-progress {
   background-color: transparent;
   position: relative; }
-  /* line 385, app.scss */
+  /* line 410, app.scss */
   .question-progress span {
     position: absolute;
     z-index: -1;
@@ -494,16 +527,16 @@ a, button {
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out; }
 
-/* line 399, app.scss */
+/* line 424, app.scss */
 label {
   font-weight: normal; }
 
-/* line 402, app.scss */
+/* line 427, app.scss */
 .cal-group {
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-top: 15px; }
-  /* line 406, app.scss */
+  /* line 431, app.scss */
   .cal-group header {
     font-size: 1.5em;
     background-color: rgba(255, 255, 255, 0.1);

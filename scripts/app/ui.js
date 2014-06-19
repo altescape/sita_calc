@@ -26,6 +26,21 @@
 
   });
 
+  ui.controller('LogOutCtrl', ['$localStorage', '$location', 'Data',
+    function ($localStorage, $location, Data) {
+
+      this.confirmLogout = function() {
+        $localStorage.$reset();
+        Data = {};
+        $location.path('logged-out');
+      };
+
+      this.startOver = function() {
+        $location.path('user');
+      };
+
+  }]);
+
   ui.directive("mainNav", function () {
     return {
       restrict    : "E",
@@ -133,6 +148,14 @@
           when('/calculator', {
             templateUrl: 'templates/partials/calculator.html',
             controller : 'CalCtrl'
+          }).
+          when('/logout', {
+            templateUrl: 'templates/partials/logout.html',
+            controller : 'LogOutCtrl'
+          }).
+          when('/logged-out', {
+            templateUrl: 'templates/partials/logged-out.html',
+            controller : 'LogOutCtrl'
           }).
           otherwise({
             redirectTo: '/user'

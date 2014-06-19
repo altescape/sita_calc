@@ -29,16 +29,8 @@
         return true;
       };
 
-      /* For output */
-      if (this.data.username !== undefined || this.data.username === "") {
-        can_proceed = true;
-        this.username = this.data.username;
-      }
-
-      if (this.data.session_name !== undefined || this.data.session_name === "") {
-        this.can_proceed = true;
-        this.session_name = this.data.session_name;
-      }
+      this.username = this.data.username;
+      this.session_name = this.data.session_name;
 
       /* Set input */
       this.setInput = function (input) {

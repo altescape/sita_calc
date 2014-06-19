@@ -102,14 +102,27 @@
       }
     }]);
 
-  cal.controller('CalCtrl', ['$localStorage', 'Data', 'DataStructure',
-    function ($localStorage, Data, DataStructure) {
+  cal.controller('CalCtrl', ['$route', '$routeParams', '$location', '$localStorage', 'Data', 'DataStructure',
+    function ($route, $routeParams, $location, $localStorage, Data, DataStructure) {
 
       this.title = "Horizon Value Proposition Calculator";
 
       /* Localise Data Factory */
       this.data = Data;
       this.dataStructure = DataStructure;
+
+
+      /* Check user has name */
+      if (this.data.username === undefined || this.data.username === "") {
+        console.info("username is empty");
+        $location.path("user");
+      }
+
+      /* Check session has name */
+      if (this.data.session_name === undefined || this.data.session_name === "") {
+        console.info("session_name is empty");
+        $location.path("user");
+      }
 
       // Saves to multiple desitinations
       this.saveToDestination = function (name, src, dest) {
