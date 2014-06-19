@@ -1,0 +1,13 @@
+<div class="col-md-4 col-md-offset-4">
+
+  <h1 class="mb-20">Horizon Value Calculator</h1>
+  <input required ng-model="user.username" ng-change="user.setInput(user)" class="form-control input-xlg mb-20"
+         placeholder="Your name..." required>
+
+  <div class="postfix-action input-xlg">
+    <input ng-model="user.session_name" ng-change="user.setInput(user)" class="form-control input-xlg"
+           placeholder="The name for this session" required>
+    <a href="/#/calculator" ng-disabled="form.$invalid || user.isChanged(user)" class="btn btn-success input-xlg"><span class="glyphicon glyphicon-ok"></span></a>
+  </div>
+
+</div>

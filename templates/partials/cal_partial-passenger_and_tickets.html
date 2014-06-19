@@ -1,0 +1,52 @@
+<section class="cal-group row">
+    <div class="input-group">
+        <label class="col-sm-8 control-label">Current total passengers boarded per year
+            <small class="white-content">{{ cal.total_passengers | number:0 }}</small>
+        </label>
+
+        <div class="col-sm-4">
+            <input ng-model="cal.total_passengers" ng-change="cal.setInput(cal)" step="100000"
+                   class="form-input" placeholder="Enter number" type="number" required>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label class="col-sm-8 control-label">Expected passenger growth per year - for the next 5 years</label>
+
+        <div class="postfix-label col-sm-4">
+            <input ng-model="cal.passenger_growth" ng-change="cal.setInput(cal)" min="0" max="100" step="0.5"
+                   class="form-input col-sm-4" type="number" required>
+            <span class="label col-sm-2">%</span>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label class="col-sm-8 control-label">Number of tickets issued per year = {{ cal.tickets_issued | number:0 }}</label>
+
+        <div class="postfix-label col-sm-4">
+            <input ng-model="cal.tickets_issued_perc" ng-change="cal.setInput(cal)" min="0" max="100" step="0.2"
+                   class="form-input col-sm-4" type="number" required>
+            <span class="label col-sm-2">%</span>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label class="col-sm-8 control-label">Percentage of tickets reissued</label>
+
+        <div class="postfix-label col-sm-4">
+            <input ng-model="cal.tickets_reissued" ng-change="cal.setInput(cal)" min="0" max="100" step="5"
+                   class="form-input col-sm-4" type="number" required>
+            <span class="label col-sm-2">%</span>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label class="col-sm-8 control-label">Hourly labour costs</label>
+
+        <div class="prefix-label col-sm-4">
+            <input ng-model="cal.labour_cost" ng-change="cal.setInput(cal)"
+                   class="form-input col-sm-4 col-sm-push-2" type="number" required>
+            <span class="label col-sm-2 col-sm-pull-4">$</span>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+<section class="cal-group row">
+    <header>Passengers boarded (PB) per year</header>
+
+    <div class="input-group">
+        <label class="col-sm-8 control-label">Core passenger services cost per PB (Res, ticketing, fares, DCS)</label>
+
+        <div class="postfix-label col-sm-4">
+            <input ng-model="cal.core_passengers_costs" ng-change="cal.setInput(cal)" min="0" max="100" step="0.5"
+                   class="form-input col-md-4" type="number" required>
+            <span class="label col-sm-2">%</span>
+        </div>
+    </div>
+
+
+
+</section>
