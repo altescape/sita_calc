@@ -4,12 +4,64 @@
  * Time: 14:16
  */
 
-(function(){
+(function () {
 
   var hc = angular.module('highCharts', ['highcharts-ng']);
 
-  hc.controller('ChartCtrl', ['Data',
-    function($scope, Data){
+  hc.controller('ChartCtrl', ['Data', '$localStorage',
+    function ($scope, Data, $localStorage) {
+
+      this.data = Data;
+
+//      this.serviceData = [
+//        ["Revenue Integrity", this.data.service_revenue_integrity],
+//        ["Revenue Integrity process improvement consultancy", this.data.service_revenue_integrity_process],
+//        ["Channel shift", this.data.service_channel_shift],
+//        ["Ancillary sales", this.data.service_ancillary_sales],
+//        ["Weight and Balance Cost Manager Application (for fuel) (CMAP)", this.data.service_weight_balance],
+//        ["O&D (origin and destination) revenue management", this.data.service_o_and_d],
+//        ["Point of sale controls", this.data.service_pos_controls],
+//        ["Reprice/re-issue", this.data.service_reprice_reissue],
+//        ["Airfare Insight", this.data.service_airfare_insight]
+//      ];
+
+      this.services = [
+        ["Revenue Integrity", "service_revenue_integrity"],
+        ["Revenue Integrity process improvement consultancy", "service_revenue_integrity_process"],
+        ["Channel shift", "service_channel_shift"],
+        ["Ancillary sales", "service_ancillary_sales"],
+        ["Weight and Balance Cost Manager Application (for fuel) (CMAP)", "service_weight_balance"],
+        ["O&D (origin and destination) revenue management", "service_o_and_d"],
+        ["Point of sale controls", "service_pos_controls"],
+        ["Reprice/re-issue", "service_reprice_reissue"],
+        ["Airfare Insight", "service_airfare_insight"]
+      ];
+
+      this.filterData = function (service, data) {
+
+        this.serviceData2 = [];
+        this.data2 = data;
+        var that = this;
+
+        angular.forEach(service, function (value) {
+          if (that.data2[value[1]] !== 0) {
+            that.serviceData2.push([value[0], that.data2[value[1]]]);
+          }
+        });
+
+        return this.serviceData2;
+      };
+
+      this.serviceSum = function (numbers) {
+
+        this.sum = 0;
+        var that = this;
+
+        angular.forEach(numbers, function (value) {
+          that.sum = that.sum + value[1];
+        });
+        return this.sum;
+      };
 
       /* Highcharts */
       this.chartConfig = {
@@ -30,42 +82,47 @@
               animation: true
             },
             pie   : {
+              center: ["25%", 250],
+              size            : 350,
               allowPointSelect: true,
               cursor          : 'pointer',
-              depth           : 35,
               borderColor     : 'rgba(255, 255, 255, 0)',
               dataLabels      : {
-                enabled : true,
-                distance: -50,
-                style   : {
-                  fontWeight: 'bold',
-                  color     : 'white',
-                  textShadow: '0px 1px 2px black'
-                }
+                enabled: false
               },
-              startAngle      : -90,
-              endAngle        : 90,
-              center          : ['50%', '75%']
+              showInLegend    : true,
+              point           : {
+                events: {
+                  legendItemClick: function () {
+                    return false;
+                  }
+                }
+              }
             }
+          },
+          legend     : {
+            verticalAlign: "bottom",
+            align           : 'center',
+            itemMarginBottom: 10,
+            itemStyle       : {
+              "color": "#FFF"
+            },
+            labelFormatter  : function () {
+              if (this.percentage === 0) return false;
+              return this.name + " (" + this.percentage.toFixed(1) + "%)";
+            },
+            enabled         : true,
+            layout          : 'horizontal',
+            symbolRadius    : 20,
+            symbolHeight    : 20,
+            symbolWidth     : 20
           }
         },
         series   : [
           {
             name     : 'Browser share',
-            innerSize: '50%',
-            data     : [
-              ['Firefox', 45.0],
-              ['IE', 26.8],
-              {
-                name    : 'Chrome',
-                y       : 12.8,
-                sliced  : true,
-                selected: true
-              },
-              ['Safari', 8.5],
-              ['Opera', 6.2],
-              ['Others', 0.7]
-            ]
+            innerSize: '20%',
+            data     : this.filterData(this.services, this.data)
           }
         ],
         exporting: {
@@ -79,17 +136,25 @@
           }
         },
         title    : {
-          text         : 'Browser<br>shares',
-          style        : {
+          text : this.serviceSum(this.filterData(this.services, this.data)),
+          style: {
             'color': 'white'
           },
-          align        : 'center',
-          verticalAlign: 'middle',
-          y            : 100
+          align: 'center'
         },
-        xAxis    : {currentMin: 0, currentMax: 10, minRange: 1},
         loading  : false
       };
-  }]);
+
+      this.updateChart = function () {
+
+        this.seriesArray = this.chartConfig.series[0];
+        this.servicesIncluded = this.filterData(this.services, this.data);
+
+        this.chartConfig.title.text = this.serviceSum(this.servicesIncluded);
+        this.seriesArray.data = this.servicesIncluded;
+      };
+
+
+    }]);
 
 })();

@@ -1,16 +1,18 @@
-<div ng-controller="ChartCtrl as chart">
-    <highchart config="chart.chartConfig" style="height: 600px; width: 50%; right: 0;" class="position-fixed"></highchart>
+<div class="chart-container" ng-controller="ChartCtrl as chart">
+    <highchart config="chart.chartConfig" style="height: 100%; width: 100%"></highchart>
 </div>
 <div class="col-md-5 col-md-offset-1" ng-controller="CalCtrl as cal">
     <form name="calculations" class="form-horizontal col-sm-12" novalidate>
+        <div ng-controller="ChartCtrl as ch">
 
-        <header class="row">
-            <h1 class="col-md-12 mb-30">{{ cal.title }}</h1>
-        </header>
+            <header class="row">
+                <h1 class="col-md-12 mb-30">{{ cal.title }}</h1>
+            </header>
 
-        <cal-passenger-tickets></cal-passenger-tickets>
-        <cal-revenue></cal-revenue>
-        <cal-service-includes></cal-service-includes>
+            <cal-passenger-tickets></cal-passenger-tickets>
+            <cal-revenue></cal-revenue>
+            <cal-service-includes></cal-service-includes>
 
+        </div>
     </form>
 </div>

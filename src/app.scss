@@ -1,5 +1,7 @@
-// Variables
+.ninja {visibility: hidden}
+.ghost {display: none;}
 
+// Variables
 $brand-colour: #FC0;
 $button-colour: #610704;
 $background-color: #CD4430;
@@ -31,6 +33,7 @@ a, button {
   box-shadow: 0 0 5px rgba(0,0,0,1), 0 0 25px rgba(0,0,0,0.4);
   #scrollarea {
     overflow: auto;
+    padding: 10px 0;
   }
 }
 .white-content {
@@ -120,14 +123,16 @@ $class-slug: mt;
   width: 100%;
 }
 
-.ninja {visibility: hidden}
-.ghost {display: none;}
-
 // Menu
-
+#mainnav {
+  position: absolute;
+  left: 15px;
+  right: 51%;
+  top: 5px;
+  margin-right: 0;
+}
 .main-nav {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 0;
 }
 
 .open-left {
@@ -159,6 +164,7 @@ $class-slug: mt;
     }
   }
 }
+
 .snapjs-left {
   .open-left {
     span {
@@ -232,7 +238,14 @@ $class-slug: mt;
     margin: 0 0 1.5em 0;
   }
 }
-
+.chart-container {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  left: 50%;
+}
 $input-group-height: 36px;
 $input-group-fontsize: $input-group-height/2.2;
 .form-control-no-border {

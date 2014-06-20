@@ -5,7 +5,7 @@
  */
 
 (function () {
-  var cal = angular.module('calculations', ['ngStorage']);
+  var cal = angular.module('calculations', ['ngStorage', 'highCharts']);
 
   cal.factory('DataStructure', function () {
     return [
@@ -150,6 +150,7 @@
         this.tickets_issued = Math.round(input.total_passengers / input.tickets_issued_perc);
 
         console.info(this.data);
+
       };
 
     }]);

@@ -107,7 +107,7 @@
     return {
       restrict   : "E",
       templateUrl: "templates/layout/scroll-area.html",
-      controller : function () {
+      controller : function ($timeout) {
 
 
         this.contentArea = document.getElementById('content');
@@ -122,8 +122,7 @@
         this.resizeContentInner = function (ele_id) {
           this.winHeight = document.documentElement.clientHeight;
           this.mainNavHeight = document.getElementById('mainnav').offsetHeight;
-          this.footbarHeight = document.getElementById('footbar').offsetHeight;
-          this.height = this.winHeight - this.mainNavHeight - this.footbarHeight;
+          this.height = this.winHeight;
           ele_id.setAttribute('style', 'height: ' + this.height + 'px');
         };
 
